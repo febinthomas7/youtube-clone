@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="yout.png" >
+    <title>searchPage - YouTube</title>
+</head>
+<style>
+
+    *{
+        margin: 0;
+        box-sizing: border-box;
+        padding: 0;
+
+    }
+     :root{
+    --primary-color:white;
+    --secondary-color:black;
+    --third-color:rgb(230 230 230);
+    --fourth-color:gray;
+    --fifth-color:#f9f5f5;
+    --sixth-color:#dfdede;
+    --imageBorder-color:transparent;
+    --icon-color:black;
+    --signIn-color:#def1ff;
+    --signIn-border-color:#e2e2e2;
+    --subscribe-btn:#444444;
+    --shadow:0 0 0px 0px #5668561f, 0 0 0px 0px #4e594e3b, 0 0 0px 0px #8b9d8b3b;
+    --numbers:rgb(70 66 66);
+    
+  }
+  .dark-theme{
+    --primary-color:black;
+    --secondary-color:white;
+    --fifth-color:#353434;
+    --sixth-color:#4d4b4b;
+    --imageBorder-color:#3a3a3a;
+    --icon-color:red;
+    --signIn-color:#1d578ad5;
+    --signIn-border-color:#383838;
+    --subscribe-btn:#c7c7c7;
+    --shadow:123px 8px 37px 50px #5668561f, 0 0 45px 60px #4e594e3b, 0 21px 51px 105px #8b9d8b3b;
+    --numbers:#b2afa;
+
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    padding: 11px;
+    position: fixed;
+    width: 95%;
+    background-color: var(--primary-color);
+}
+ input {
+    outline: none;
+    border: 0.1px solid var(--signIn-border-color);
+    
+    border-radius: 50px;
+    width: 220px;
+    cursor: pointer;
+    background-color: var(--primary-color);
+}
+  
+    body{
+        margin: 0;
+        box-sizing: border-box;
+        padding: 0;
+    }
+    header i{
+        
+        
+        padding: 10px 13px;
+        background-color: var(--fifth-color);
+        border: none;
+        font-size: 30px;
+        border-radius: 50px;
+        color: var(--secondary-color);
+        cursor: pointer;
+    }
+   
+    #back{
+        background-color:transparent;
+    }
+    
+    #searchDiv {
+    padding: 0px 26px 26px 26px;
+    color: white;
+    margin-top: 74px;
+    }
+    #searchDiv .Sbar > p{
+    
+    font-size: 13px;
+    color:var(--secondary-color);
+  }
+    .main {
+    height: 100vh;
+    background-color: var(--primary-color);
+    overflow: auto;
+}
+    #back{
+        color:var(--secondary-color) ;
+    }
+     input[type=text] {
+    padding: 10px 10px 10px 15px;
+    margin-top: 0px;
+    font-size: 16px;
+    color: var(--secondary-color);
+}
+hr {
+    outline: none;
+    border: 1px solid #363434;
+    margin-block: 15px;
+}
+
+
+</style>
+<body>
+    <div  class="main">
+        <header>
+            <a href="index.html"><i  id="back" class="fa fa-arrow-left"></i></a>
+            
+            <div>
+                <input type="text" placeholder="Search YouTube"  id="query" oninput="input()">
+            </div>
+            <div><i class="fa fa-microphone"></i></div>
+        </header>
+        <div id="searchDiv"></div>
+
+    </div>
+    
+    <script>
+        let Api = "AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E";
+
+
+
+const input = async ()=>{
+    let query = document.getElementById("query").value;
+    // let q = localStorage.getItem("query");
+
+
+    let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query}&key=${Api}`);
+    let data = await res.json();
+  
+    searchBar(data.items);
+
+}
+
+const searchBar = (data)=>{
+    let  container = document.getElementById("searchDiv");
+    let query = document.getElementById("query").value;
+
+    if(query == ""){
+
+        container.innerHTML = null;
+        container.style.padding = "0px";
+        
+
+    }else{
+        data.forEach(({snippet,id:{videoId}}) => {
+
+            // let img = snippet.thumbnails.high.url;
+            let title = snippet.title;
+    
+            let div = document.createElement('div');
+            div.className = "Sbar";
+           
+            // let image = document.createElement('img');
+            // image.src = img;
+    
+            let p = document.createElement("p");
+            p.innerText = title;
+
+            let hr = document.createElement("hr");
+            hr
+    
+           
+    
+            let data={
+                snippet,
+                videoId
+            }
+            div.addEventListener("click",()=>{
+                localStorage.setItem("video",JSON.stringify(data));
+                localStorage.setItem("query",JSON.stringify(snippet.channelTitle));
+                window.location.href="searchedVideo.html";
+            })
+    
+            
+    
+    
+            div.append(p);
+            container.append(div,hr);
+           
+    
+    
+            
+        }
+        )
+
+
+    }
+
+
+}
+
+
+let theme = localStorage.getItem("mode");
+
+if(theme && theme === "dark"){
+    document.body.classList.add("dark-theme");
+
+}
+else{
+    document.body.classList.remove("dark-theme");
+}
+    </script>
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>YouTube</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <link rel="icon" type="image/x-icon" href="yout.png" style="width: 100px;">
+  <link rel="stylesheet" href="yt.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+<body>
+
+  <section id="header">
+   
+    <div class="siden">
+      <i class="fa-solid fa-bars"  id="bars"></i>
+        
+      
+        
+        <a href="index.html"> <i style="margin: 0;" class="fa-brands fa-youtube" id="logo" ></i><p class="YouTube" >YouTube</p><sup>IN</sup></a>
+        
+    </div>
+    <div>
+        <ul id="navbar">
+          
+          <i id="submit" class="fa fa-search submit"></i>
+          <input type="text" placeholder="Search" id="query"   oninput="input()">
+          <button type="submit" onclick="search()"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+          <div id="searchDiv"></div>
+          <div class="mick">
+            <i class="fa-solid fa-microphone"></i>
+          </div>
+         
+        
+        </ul>
+    </div>
+
+    <div id="out">
+        <i class="fa-solid fa-ellipsis-vertical dropbtn" onclick="drop()">
+         
+          <div class="dropdown-content" id="dropdown" >
+            <a href="#" id="drk"><i class="fa-regular fa-moon"></i><span>Dark Mode </span></a>
+            <a href="#" id="lit"><i class="fa-regular fa-sun"></i><span>Normal Mode </span></a>
+          </div>
+        </i>
+
+      
+        <div class="outdent">
+          <i class="fa-solid fa-circle-user"></i>
+
+            <h4>Sign in</h4>
+        </div>
+    </div>
+
+    <div id="smallnav">
+      <div>
+        <i class="fa-solid fa-ellipsis-vertical dropbtn" onclick="dr()">
+         
+          <div class="dropdown-content" id="dropd" >
+            <a href="#" id="dark"><i class="fa-regular fa-moon"></i><span>Dark Mode </span></a>
+            <a href="#" id="light"><i class="fa-regular fa-sun"></i><span>Normal Mode </span></a>
+          </div>
+        </i>
+      </div>
+      
+      <div>
+        
+        <i class="fa-regular fa-bell"></i>
+      </div>
+       
+       <div>
+        <a href="searchPage.html"><i class="fa-solid fa-magnifying-glass"></i></a>
+        
+        
+       </div>
+       
+       <div>
+        <i class="fa-solid fa-circle-user"></i>
+       </div> 
+       
+    </div>
+   
+</section>
+  
+
+<section class="page">
+  
+
+ 
+
+<div class="sidenav" id="nav1">
+  
+<div  id="y">
+  <i class="fa-brands fa-youtube"><p>YouTube</p></i>
+  
+  <i id="close" class="fa-regular fa-circle-xmark"></i>
+
+</div>
+
+
+  <div class="icons " id="a">
+    <i class="fa-solid fa-house"></i>
+
+  <a class="active" href="index.html">Home</a>
+  
+  </div>
+  <div class="icons" id="b">
+    <i class="fa-solid fa-heart"></i>
+    <a href="#">Shorts</a>
+    
+    </div>
+  
+    <div class="icons" id="c" >
+      <i class="fa-brands fa-youtube"></i>
+        <a href="index.html">Subscriptions</a>
+
+        
+    </div>
+    <hr color="whitesmoke">
+    <div class="icons" id="d" >
+      <i class="fa-solid fa-photo-film"></i>
+            <a href="index.html">Library</a>
+
+      
+  </div>
+  <div class="icons" id="e" >
+    <i class="fa-solid fa-clock-rotate-left"></i>
+    <a href="index.html">History</a>
+
+    
+</div>
+<div id="cap-2">
+<hr>
+<p  class="sidebarP" >Sign in to like videos, comment, and subscribe</p>
+<div id="outdent" class="icons">
+   
+  
+  <div>
+    <i class="fa-solid fa-circle-user"></i>
+
+  <h4>Sign in</h4>
+  </div>
+</div>
+
+<hr>
+<h2 style="padding:15px 10px 10px 2px ; margin-left: 20px; font-weight: 200;">Explore</h2>
+<div class="icons" id="x" >
+  <i class="fa fa-fire"></i>
+  <a href="#">Trending</a>
+
+  
+</div>
+
+<div class="icons" id="f" >
+  <i class="fa fa-shopping-bag"></i>
+  <a href="#">Shopping</a>
+
+  
+</div>
+<div class="icons" id="g">
+  <i class="fa fa-music" ></i>
+  <a href="#">Music</a>
+
+  
+</div>
+<div class="icons" id="h" >
+  <i class="fa fa-film"></i>
+  <a href="#">Movies</a>
+
+  
+</div>
+<div class="icons" id="i">
+  <i class="fa fa-podcast"></i>
+  <a href="index.html">Live</a>
+
+  
+</div>
+<div class="icons" id="j">
+  <i class="fa-solid fa-headset"></i>
+  <a href="index.html">Gaming</a>
+
+  
+</div>
+<div class="icons" id="k">
+  <i class="fa-solid fa-newspaper"></i>
+  <a href="index.html">News</a>
+
+  
+</div>
+<div class="icons" id="l">
+  <i class="fa-solid fa-trophy"></i>
+    <a href="index.html">Sports</a>
+
+  
+</div>
+<div class="icons" id="m">
+  <i class="fa-regular fa-lightbulb"></i>
+  <a href="index.html">Learning</a>
+
+  
+</div>
+<div class="icons" id="n">
+  <i class="fa-solid fa-shirt"></i>
+  <a href="index.html">Fashion & Beauty</a>
+
+  
+</div>
+<hr>
+<div class="icons" id="o">
+  <i class="fa-solid fa-circle-plus"></i>
+  <a href="index.html">Browse channels</a>
+
+  
+</div>
+<hr>
+<h4 style="padding:15px 10px 10px 2px ; margin-left: 20px; font-weight: 500; font-size: 20px;">More from YouTube</h4>
+     
+<div class="icons" id="p">
+  <i class="fa-brands fa-youtube"></i>
+
+  <a href="index.html">YouTube Preimium</a>
+
+  
+</div>
+<div class="icons" id="q">
+  <i class="fa-brands fa-youtube"></i>
+
+  <a href="index.html">YouTube Music</a>
+
+  
+</div>
+<div class="icons" id="r">
+  <i class="fa-brands fa-youtube"></i>
+
+  <a href="index.html">YouTube Kids</a>
+
+  
+</div>
+<div class="icons" id="s">
+  <i class="fa-brands fa-youtube"></i>
+
+  <a href="index.html">YouTube TV</a>
+
+  
+</div>
+<hr>
+
+<div class="icons" id="t">
+  <i class="fa-solid fa-gear"></i>
+  <a href="index.html">Settings</a>
+
+  
+</div>
+<div class="icons" id="u">
+  <i class="fa-solid fa-flag"></i>
+  <a href="index.html">Report history</a>
+
+  
+</div>
+<div class="icons" id="v">
+  <i class="fa-solid fa-circle-question"></i>
+  <a href="index.html">Help</a>
+
+  
+</div>
+<div class="icons" id="w">
+  <i class="fa-solid fa-circle-exclamation"></i>
+  <a href="index.html">Send feedback</a>
+
+  
+</div>
+<hr>
+<p class="sidedetail" >About  Press  Copyright  Contact  us  CreatorAdvertise  Developers</p>
+<p class="sidedetail">Terms Privacy Policy & Safety How YouTube works Test new features</p>
+ <h5  class="sidedetailh5">© 2023 Google LLC</h5>
+    </div> 
+</div> 
+
+
+  <div class="febin" >
+    <section id="button">
+     <div id="touch">
+      <div  style="padding:6px 10px ;"><i id="bar" style="font-size: 22px;" class="fa fa-compass" aria-hidden="true"></i></div>
+     </div>
+      <div>
+        <button>All</button>
+      </div>
+      <div>
+        <button class="btn">Music</button>
+      </div>
+      <div>
+        <button class="btn">Dramedy</button>
+      </div>
+      <div>
+        <button class="btn">Scene</button>
+      </div>
+      
+      <div>
+        <button class="btn">Live</button>
+      </div>
+      <div>
+        <button class="btn">Bollywood</button>
+      </div>
+      <div>
+        <button class="btn">Melodies</button>
+      </div>
+      <div class="a">
+        <button class="btn">Mantras</button>
+      </div>
+      <div class="a">
+        <button class="btn">Podcast</button>
+      </div>
+      
+      <div class="a" >
+        <button class="btn">Course</button>
+      </div>
+      <div class="a">
+        <button class="btn">Cars</button>
+      </div>
+      <div class="a">
+        <button class="btn">Recently&#160;uploaded</button>
+      </div>
+      <div class="a">
+        <button class="btn">Tourism</button>
+      </div>
+      <div class="a">
+        <button class="btn">Kapil&#160;Sharma</button>
+      </div>
+      <div class="a">
+        <button class="btn">Smartphones</button>
+      </div>
+      
+    </section>
+
+<div class="main" id="Main">
+ 
+
+
+  <div id="container"></div>
+          
+
+</div>
+
+
+
+
+
+  </div>
+</section>
+<footer>
+  <div style="margin-right: 20px;">
+    <div class="d"><i class="fa fa-home"></i></div>
+    <p>Home</p>
+  </div>
+  <div style="margin-right: 20px;">
+    <div  class="d"> <i class="fa-solid fa-heart"></i></div>
+    <p>Shorts</p>
+  </div>
+  <div style="margin: 0px 20px;">
+    <div  class="d"><i style="font-size: 40px;" class="fa fa-plus-circle"></i></div>
+    
+  </div>
+  <div>
+    <div  class="d"> <i class="fa-brands fa-youtube"></i></div>
+    <p>Subscriptions</p>
+  </div>
+  <div>
+    <div  class="d"> <i class="fa-solid fa-photo-film"></i></div>
+    <p>Library</p>
+  </div>
+</footer>
+<script src="yt.js"></script>
+
+</body>
+</html> 
