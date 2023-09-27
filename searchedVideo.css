@@ -228,21 +228,27 @@ body {
     cursor: pointer;
     display: flex;
     row-gap: 11px;
-    justify-content: center;
+    /* justify-content: ceter; */
 }
-#container> div .middleDiv{
+#container> div .middleDiv {
   display: flex;
   justify-content: space-around;
   height: auto;
   flex-direction: row;
+  width: 94%;
 }
 #container> div .lowerDiv {
-    height: auto;
-    width: 94%;
-    display: none;
-    margin-inline: 16px;
-    gap: 3px;
-    flex-direction: row;
+  height: auto;
+  width: 94%;
+  margin-inline: 16px;
+  gap: 3px;
+  flex-direction: row;
+}
+
+#container .ldiv{
+  display: flex;
+    flex-direction: column;
+    padding: 15px;
 }
 #container >.homeDiv{
     margin-inline: 14%;

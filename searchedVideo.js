@@ -133,13 +133,25 @@ const app = (data)=>{
         let lowerDiv = document.createElement("div");
         lowerDiv.className="lowerDiv";
 
+        let ldiv= document.createElement("div");
+        
+        
+        ldiv.className="ldiv";
+
+
         if(text == channelTitle){
             name.style.display="none";
             image.style.borderRadius="50%";
             image.style.width="240px";
             div.style.alignItems="center";
-            Cname.innerText =channelTitle +" "+ subD +" subscribers"
+            Cname.innerText =channelTitle +" "+ subD +" subscribers";
+            Cname.style.display="flex";
             lowerDiv.style.justifyContent="center";
+            lowerDiv.style.alignItems="center";
+            lowerDiv.style.position="relative";
+            lowerDiv.style.top="50%";
+            dots.style.display="none";
+
         }
 
         let data={
@@ -157,7 +169,8 @@ const app = (data)=>{
 
         middleDiv.append(name,dots);
         lowerDiv.append(Cname,tick);
-        div.append(image,middleDiv,lowerDiv);
+        ldiv.append(middleDiv,lowerDiv)
+        div.append(image,ldiv);
         container.append(div);
 
 
