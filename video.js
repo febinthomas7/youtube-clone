@@ -12,6 +12,9 @@ const playVideo =(data)=>{
 
     let container = document.getElementById("play");
     let iframe = document.createElement("iframe");
+    let title = document.getElementById("title");
+    // const {snippet:{thumbnails}} =data.snippet;
+    title.innerText=data.snippet.title+"- YouTube";
     //    iframe.src =`https://www.youtube.com/embed/${data.videoId}?autoplay=1&mute=1`;
     iframe.src =`https://www.youtube.com/embed/${data.videoId}?rel=0&autoplay=1&mute=1`;
 
@@ -78,9 +81,14 @@ const desc = (data2)=>{
 
         let strong = document.createElement("strong");
         let strong1 = document.createElement("strong");
+        var sn = snippet.publishedAt
+        var date = sn.slice(8,10);
+        var mon = sn.slice(0,10);
+        var today = new Date(mon);
+        var month = today.toLocaleString('default', { month: 'short' });
 
-        strong.innerText = statistics.viewCount;
-        strong1.innerText= snippet.publishedAt;
+        strong.innerText = statistics.viewCount +" views";
+        strong1.innerText= date + month;
 
         let section1 = document.createElement("section");
         section1.innerText=snippet.title;
@@ -374,9 +382,21 @@ const desc = (data2)=>{
          subscribe.append(btn);
 
 
+         let i = document.createElement("i");
+         i.id="capI";
+         i.className="fa fa-check-circle";
+         i.style.color="grey";
+         i.style.fontSize="15px";
+
+         if(subData.length <= 5){
+
+            i.style.display="none";
+            subI.style.display="none";
+         }
+         
          h5.append(subI);
          subP.append(subSpan);
-         sub.append(h5,subP);
+         sub.append(h5,subP,i);
 
 
          capDiv.append(capImg);
@@ -596,8 +616,8 @@ const search= async ()=>{
     let query = document.getElementById("query").value;
     
 
-    let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${query}&key=${Api}`);
-    let data = await res.json();
+    // let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${query}&key=${Api}`);
+    // let data = await res.json();
     localStorage.setItem("query",JSON.stringify(query));
     window.location.href="searchedVideo.html";
     // append(data.items);

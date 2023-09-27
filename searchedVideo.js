@@ -31,17 +31,6 @@ let Api = "AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM";
 // AIzaSyA6AIQmAAKnECvG1DckRmdY4zvijPtshgg
 
 
-// const most = async ()=>{
-
-//     let res = await fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&maxResults=25&id=Ks-_Mh1QhMc&key=${Api}`);
-//     let data = await res.json();
-
- 
-//     console.log(data.items)
-    
-// } 
-// most();
-
 let btn = document.querySelectorAll(".btn");
 
 btn.forEach((bt)=>{
@@ -117,8 +106,11 @@ const app = (data)=>{
         image.className = "homeImg";
         image.src = img;
         
+        
+        let text = title.replace(/#/g, " #");
         let name = document.createElement('p');
-        name.innerText = title;
+        name.innerText = text;
+        
 
         let Cname = document.createElement('span');
         Cname.innerText = channelTitle;
@@ -126,14 +118,29 @@ const app = (data)=>{
         let dots = document.createElement("i");
         dots.className = "fa fa-ellipsis-v";
 
+        let sub = localStorage.getItem("subscriber");
+        let subD = JSON.parse(sub);
+        
         let tick = document.createElement("i");
         tick.className ="fa fa-check-circle";
+        if(subD.length <= 5){
+            tick.style.display="none";
+        }
 
         let middleDiv = document.createElement("div");
         middleDiv.className="middleDiv";
 
         let lowerDiv = document.createElement("div");
         lowerDiv.className="lowerDiv";
+
+        if(text == channelTitle){
+            name.style.display="none";
+            image.style.borderRadius="50%";
+            image.style.width="240px";
+            div.style.alignItems="center";
+            Cname.innerText =channelTitle +" "+ subD +" subscribers"
+            lowerDiv.style.justifyContent="center";
+        }
 
         let data={
             snippet,

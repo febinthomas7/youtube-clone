@@ -22,6 +22,9 @@ body {
     display: none;
     
 }
+#capI{
+  display: none;
+}
 .loader {
   display: block;
   --height-of-loader: 2px;
@@ -1491,7 +1494,7 @@ sup {
   height: 50px;
   width: 50px;
   object-fit:cover;
- 
+  border: 0.1px solid #464444;
   cursor: pointer;
   
 }
@@ -2059,6 +2062,9 @@ footer > div:nth-child(4){
 }
 
 @media(max-width:490px){
+  #capI{
+    display: flex;
+  }
   #bar{
     font-size: 22px;
     color: var(--secondary-color);
@@ -2536,8 +2542,9 @@ footer .d {
 }
 
 
-.sub{
+.sub {
   display: flex;
+  align-items: baseline;
 }
 .sub span{
   display:none;
@@ -2593,7 +2600,7 @@ footer .d {
   display: initial;
  }
  .caption-2 div strong{
-  color: #121111;
+  color:var(--secondary-color);
  }
  .description{
   width:100vw;
