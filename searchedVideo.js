@@ -23,7 +23,7 @@ if(close){
 
 // AIzaSyAUgra2V1mbpDMTkE9RTvVDyu1VkS1f2k0
 
-let Api = "AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM";
+let Api = "AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E";
 
 
 // AIzaSyDu9S6TuI7bQ9E29AVGsUDshpMsxaEyYWI
@@ -144,7 +144,7 @@ const app = (data)=>{
             image.style.borderRadius="50%";
             image.style.width="240px";
             div.style.alignItems="center";
-            Cname.innerText =channelTitle +" "+ subD +" subscribers";
+            Cname.innerText =channelTitle +" ("+ subD +" subscribers)";
             Cname.style.display="flex";
             lowerDiv.style.justifyContent="center";
             lowerDiv.style.alignItems="center";
@@ -152,17 +152,30 @@ const app = (data)=>{
             lowerDiv.style.top="50%";
             dots.style.display="none";
 
-        }
+            let data={
+                snippet,
+                videoId,
+                channelId,
+            }
+            div.addEventListener("click",()=>{
+                localStorage.setItem("video",JSON.stringify(data));
+                window.location.href="channel.html";
+            })
 
-        let data={
-            snippet,
-            videoId,
-            channelId,
         }
-        div.addEventListener("click",()=>{
-            localStorage.setItem("video",JSON.stringify(data));
-            window.location.href="video.html";
-        })
+        else{
+            let data={
+                snippet,
+                videoId,
+                channelId,
+            }
+            div.addEventListener("click",()=>{
+                localStorage.setItem("video",JSON.stringify(data));
+                window.location.href="video.html";
+            })
+
+        }
+        
 
         
 

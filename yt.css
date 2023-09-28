@@ -22,6 +22,90 @@ body {
     display: none;
     
 }
+#page-1 section .div2> span{
+  display: flex;
+    gap: 4px;
+}
+
+#sec-2 {
+  display: grid;
+  grid-template-columns: repeat(6,1fr);
+  grid-template-rows: auto;
+  gap: 17px;
+  row-gap: 36px;
+  width: 72%;
+  margin-top: 40px;
+  margin-inline: auto;
+}
+#sec-2 >section {
+  width: 210px;
+  height: 210px;
+}
+#sec-2 .div2> h5 {
+  color: var(--secondary-color);
+}
+#sec-2 section > img {
+  width: 100%;
+  height: 60%;
+  border-radius: 13px;
+  border: 1px solid #211f1f;
+}
+#sec-1{
+  width: 100%;
+}
+#page-1{
+  flex-direction: column-reverse;
+  display: flex;
+  width: 100%;
+}
+#page-1 section >.Mdiv {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 25px 0;
+  border-top: 1px solid #393939;
+  border-bottom: 1px solid #393939;
+}
+#sec-1 img{
+  width: 100%;
+  height: 245px;
+}
+#page-1 section .div1 >img{
+  width: 128px;
+    height: 128px;
+    border: 1px solid #1f1f1f;
+    border-radius: 50%;
+}
+#page-1 section> .div1 {
+  padding: 0 15px;
+ 
+}
+#page-1 section .Mdiv >.divM{
+  display: flex;
+  
+}
+#page-1 section .Mdiv .div3> button{
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius:20px;
+  border: none;
+  
+}
+#page-1 section .div2  span >h3,
+#page-1 section .div2  span >i{
+color: var(--secondary-color);
+}
+#page-1 section .div2 >p{
+  color: gray;
+  font-size: 14px;
+  }
+  #page-1 section .Mdiv .divM >.div2{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 10px;
+  }
+ 
 #capI{
   display: none;
 }
@@ -1198,7 +1282,7 @@ a{
     
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background:gray; 
+    background: #d6d6d6;
     border:3px solid  var(--primary-color);
     
     border-radius:50px;
@@ -1768,6 +1852,11 @@ cursor:pointer;
     grid-template-columns: repeat(4,1fr);
     
 }
+#sec-2 {
+  
+  grid-template-columns: repeat(5,1fr);
+  
+}
 
 
 }
@@ -1796,6 +1885,11 @@ cursor:pointer;
    
     grid-template-columns: repeat(3,1fr);
     
+}
+#sec-2 {
+  
+  grid-template-columns: repeat(3,1fr);
+  
 }
   #button {
     display: flex;
@@ -1991,6 +2085,12 @@ footer > div:nth-child(4){
     grid-template-columns: repeat(2,1fr);
     
 }
+#sec-2 {
+  
+  grid-template-columns: repeat(2,1fr);
+  width: 82%;
+  
+}
   
   #header input {
  
@@ -2058,6 +2158,10 @@ footer > div:nth-child(4){
 #video {
   margin-left: 0;
   margin-top: 30px;
+}
+#page-1 section .div2 span >h3, #page-1 section .div2 span >i {
+  color: var(--secondary-color);
+  font-size: 15px;
 }
 }
 
@@ -2296,6 +2400,43 @@ a{
     grid-template-columns: repeat(1,1fr);
     margin: 0px;
     
+}
+#sec-2 {
+  
+  grid-template-columns: repeat(1,1fr);
+  margin-inline: 0px;
+  
+}
+#page-1 section .Mdiv .div3> button {
+  
+  top: 80%;
+  position: relative;
+}
+#page-1 section .div1 >img {
+  width: 90px;
+  height: 90px;
+  border: 1px solid #1f1f1f;
+  border-radius: 50%;
+}
+#page-1 section .div2 span >h3, #page-1 section .div2 span >i {
+  color: var(--secondary-color);
+  font-size: 15px;
+}
+#page-1 section .div1 {
+  justify-content: center;
+    display: flex;
+}
+
+#sec-2 >section {
+  width: 100%;
+  height: 257px;
+}
+#sec-2 section > img {
+ border-radius: 0px;
+}
+#page-1 section .Mdiv >.divM {
+  display: flex;
+  flex-direction: column;
 }
 #container div{
   height: 100%;

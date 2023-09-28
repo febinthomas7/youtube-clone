@@ -1,7 +1,7 @@
 
-let video = localStorage.getItem("video");
+var video = localStorage.getItem("video");
 
-let data = JSON.parse(video);
+var data = JSON.parse(video);
 
 // let data1 = JSON.parse(video);
 
@@ -29,18 +29,18 @@ playVideo(data);
 
 
 
-let Api = "AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM";
+let Api = "AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E";
 const avatar= async(data)=>{
 
     let res = await fetch(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${data.channelId}&maxResults=25&key=${Api}`);
     
     let data1= await res.json();
-    console.log(data1.items)
+    console.log(data.snippet)
     const {snippet:{thumbnails}} =data1.items[0];
     const {statistics:{subscriberCount}} =data1.items[0];
 
     
-    // console.log(subscriberCount)
+    console.log(subscriberCount)
   
     
  
@@ -422,14 +422,14 @@ const desc = (data2)=>{
 
 
 
-const mostPopular = async ()=>{
+const mostPopular = async (data1)=>{
 
     try{
         let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&key=${Api}`);
     // let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=100&chart=mostPopular&regionCode=IN&key=${Api}`);
     let data = await res.json();
     // console.log(data)
-    append(data.items)
+    append(data.items,data1)
 
     }
     catch(e){
@@ -488,11 +488,12 @@ const mostPopular = async ()=>{
     }
    
 } 
-mostPopular();
+mostPopular(data);
 
 
 
-const append = (data1)=>{
+const append = async(data1,data)=>{
+    console.log(data.snippet)
     let side = document.getElementById("side");
     data1.forEach(({snippet,id:{videoId}}) => {
 
@@ -553,7 +554,29 @@ const append = (data1)=>{
 
 
         
-    });
+    }
+   
+   
+    
+    
+    
+    
+    );
+    let {snippet:{channelId}} =data;
+    let res = await fetch(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${channelId}&maxResults=25&key=${Api}`);
+    
+    let d= await res.json();
+    console.log(d.snippet)
+    const {snippet:{thumbnails}} =d.items[0];
+    const {statistics:{subscriberCount}} =d.items[0];
+
+    
+    console.log(subscriberCount);
+  
+    
+ 
+    localStorage.setItem("avatar",JSON.stringify(thumbnails.default.url));
+    localStorage.setItem("subscriber",JSON.stringify(subscriberCount));
 }
 
 // const most = async ()=>{
