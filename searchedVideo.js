@@ -14,6 +14,12 @@ if(close){
 }
 
 
+let q = localStorage.getItem("query");
+let query = JSON.parse(q);
+let title = document.getElementById("title");
+  
+    title.innerText= query+"- YouTube";
+
 
 
 
@@ -23,7 +29,7 @@ if(close){
 
 // AIzaSyAUgra2V1mbpDMTkE9RTvVDyu1VkS1f2k0
 
-let Api = "AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E";
+let Api = "AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM";
 
 
 // AIzaSyDu9S6TuI7bQ9E29AVGsUDshpMsxaEyYWI
@@ -154,8 +160,7 @@ const app = (data)=>{
 
             let data={
                 snippet,
-                videoId,
-                channelId,
+                 channelId,
             }
             div.addEventListener("click",()=>{
                 localStorage.setItem("video",JSON.stringify(data));
@@ -194,6 +199,11 @@ const app = (data)=>{
 const search= async ()=>{
 
     let query = document.getElementById("query").value;
+    let q = localStorage.getItem("query");
+    let qry = JSON.parse(q);
+    let title = document.getElementById("title");
+  
+    title.innerText= qry+"- YouTube";
     
 
     let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${query}&key=${Api}`);
@@ -208,7 +218,11 @@ const search= async ()=>{
 
 const input = async ()=>{
     let query = document.getElementById("query").value;
-    // let q = localStorage.getItem("query");
+    let q = localStorage.getItem("query");
+    let qry = JSON.parse(q);
+    let title = document.getElementById("title");
+  
+    title.innerText= qry+"- YouTube";
 
 
     let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query}&key=${Api}`);

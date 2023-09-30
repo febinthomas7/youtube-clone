@@ -150,6 +150,7 @@ const input = async ()=>{
 }
 
 const searchBar = (data)=>{
+    console.log(data)
     let  container = document.getElementById("searchDiv");
     let query = document.getElementById("query").value;
 
@@ -184,6 +185,7 @@ const searchBar = (data)=>{
                 videoId
             }
             div.addEventListener("click",()=>{
+                localStorage.setItem("video",JSON.stringify(data));
                 localStorage.setItem("video",JSON.stringify(data));
                 localStorage.setItem("query",JSON.stringify(snippet.channelTitle));
                 window.location.href="searchedVideo.html";

@@ -1,11 +1,35 @@
 
-var video = localStorage.getItem("video");
+let video = localStorage.getItem("video");
 
-var data = JSON.parse(video);
+let data = JSON.parse(video);
+// console.log(data)
 
-// let data1 = JSON.parse(video);
 
 
+let Api = "AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM";
+const avatar= async(data)=>{
+    // console.log(data)
+
+    let res = await fetch(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${data.channelId}&maxResults=25&key=${Api}`);
+    
+    let d= await res.json();
+   
+//    console.log(d.items)
+ av(d.items)
+    
+
+
+}
+avatar(data);
+
+const av = (d)=>{
+
+  d.forEach(({snippet,statistics})=>{
+        localStorage.setItem("avatar",JSON.stringify(snippet.thumbnails.default.url));
+    localStorage.setItem("subscriber",JSON.stringify(statistics.subscriberCount));
+        
+    });
+}
 
 
 const playVideo =(data)=>{
@@ -13,7 +37,7 @@ const playVideo =(data)=>{
     let container = document.getElementById("play");
     let iframe = document.createElement("iframe");
     let title = document.getElementById("title");
-    // const {snippet:{thumbnails}} =data.snippet;
+  
     title.innerText=data.snippet.title+"- YouTube";
     //    iframe.src =`https://www.youtube.com/embed/${data.videoId}?autoplay=1&mute=1`;
     iframe.src =`https://www.youtube.com/embed/${data.videoId}?rel=0&autoplay=1&mute=1`;
@@ -29,32 +53,13 @@ playVideo(data);
 
 
 
-let Api = "AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E";
-const avatar= async(data)=>{
-
-    let res = await fetch(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${data.channelId}&maxResults=25&key=${Api}`);
-    
-    let data1= await res.json();
-    console.log(data.snippet)
-    const {snippet:{thumbnails}} =data1.items[0];
-    const {statistics:{subscriberCount}} =data1.items[0];
-
-    
-    console.log(subscriberCount)
-  
-    
- 
-    localStorage.setItem("avatar",JSON.stringify(thumbnails.default.url));
-    localStorage.setItem("subscriber",JSON.stringify(subscriberCount));
 
 
-}
-avatar(data);
 
 
 // 'https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails&id=UC5hNTS5NiBT6l8e50bdnQCw&maxResults=25&key=[YOUR_API_KEY]' 
 const description = async (data)=>{
-
+    // console.log(data)
     let res = await fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${data.videoId}&key=${Api}`);
     let data2 = await res.json();
     append(data2.items)
@@ -422,14 +427,14 @@ const desc = (data2)=>{
 
 
 
-const mostPopular = async (data1)=>{
+const mostPopular = async ()=>{
 
     try{
         let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&key=${Api}`);
     // let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=100&chart=mostPopular&regionCode=IN&key=${Api}`);
     let data = await res.json();
     // console.log(data)
-    append(data.items,data1)
+    append(data.items)
 
     }
     catch(e){
@@ -488,14 +493,14 @@ const mostPopular = async (data1)=>{
     }
    
 } 
-mostPopular(data);
+mostPopular();
 
 
 
-const append = async(data1,data)=>{
-    console.log(data.snippet)
+const append = async(data1)=>{
+    
     let side = document.getElementById("side");
-    data1.forEach(({snippet,id:{videoId}}) => {
+    data1.forEach(({snippet,id:{videoId},snippet:{channelId}}) => {
 
         let img = snippet.thumbnails.high.url;
         let channelTitle = snippet.channelTitle;
@@ -532,14 +537,30 @@ const append = async(data1,data)=>{
 
 
         Cname.append(Cicon)
-        let data={
-            snippet,
-            videoId
+
+        if(channelTitle == title){
+            let data={
+                snippet,
+                videoId,
+                channelId,
+            }
+            div1.addEventListener("click",()=>{
+                localStorage.setItem("video",JSON.stringify(data));
+                window.location.href="channel.html";
+            })
+        }else{
+            let data={
+                snippet,
+                videoId,
+                channelId,
+            }
+            div1.addEventListener("click",()=>{
+                localStorage.setItem("video",JSON.stringify(data));
+                window.location.href="video.html";
+            })
+
         }
-        div1.addEventListener("click",()=>{
-            localStorage.setItem("video",JSON.stringify(data));
-            window.location.href="video.html";
-        })
+        
 
       
 
@@ -562,32 +583,30 @@ const append = async(data1,data)=>{
     
     
     );
+
+
+ 
+  
+}
+
+const most = async (data)=>{
+
     let {snippet:{channelId}} =data;
     let res = await fetch(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${channelId}&maxResults=25&key=${Api}`);
     
     let d= await res.json();
-    console.log(d.snippet)
-    const {snippet:{thumbnails}} =d.items[0];
-    const {statistics:{subscriberCount}} =d.items[0];
+    // console.log(d)
 
-    
-    console.log(subscriberCount);
-  
-    
- 
-    localStorage.setItem("avatar",JSON.stringify(thumbnails.default.url));
-    localStorage.setItem("subscriber",JSON.stringify(subscriberCount));
-}
+    d.items.forEach(({snippet,statistics})=>{
+        localStorage.setItem("avatar",JSON.stringify(snippet.thumbnails.default.url));
+         localStorage.setItem("subscriber",JSON.stringify(statistics.subscriberCount));
+        //  console.log(snippet)
 
-// const most = async ()=>{
-
-//     let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=100&chart=mostPopular&regionCode=IN&key=${Api}`);
-//     let data2 = await res.json();
-//     console.log(data2.items)
+    })
     
    
-// } 
-// most();
+} 
+most(data);
 const drop = ()=>{
     const element = document.getElementById("dropdown");
     element.classList.toggle("drop")

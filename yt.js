@@ -22,7 +22,7 @@ if(close){
 
 
 
-let Api = "AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E";
+let Api = "AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM";
 // AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM
 
 // AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E
@@ -65,7 +65,6 @@ const mostPopular = async ()=>{
 
     }
     catch(e){
-        // <div class="loader"></div>
         let  load = document.createElement("span");
         let head = document.getElementById("header");
 
@@ -119,6 +118,7 @@ mostPopular();
 const app = (data)=>{
     let container = document.getElementById("container");
     container.innerHTML = null;
+    // console.log(data)
     data.forEach(({snippet,id:{videoId},snippet:{channelId}}) => {
 
         let img = snippet.thumbnails.high.url;
@@ -151,15 +151,30 @@ const app = (data)=>{
         let lowerDiv = document.createElement("div");
         lowerDiv.className="lowerDiv";
 
-        let data={
-            snippet,
-            videoId,
-            channelId,
+        if(channelTitle == title){
+            let data={
+                snippet,
+                videoId,
+                channelId,
+            }
+            div.addEventListener("click",()=>{
+                localStorage.setItem("video",JSON.stringify(data));
+                window.location.href="channel.html";
+            })
         }
-        div.addEventListener("click",()=>{
-            localStorage.setItem("video",JSON.stringify(data));
-            window.location.href="video.html";
-        })
+        else{
+            let data={
+                snippet,
+                videoId,
+                channelId,
+            }
+            div.addEventListener("click",()=>{
+                localStorage.setItem("video",JSON.stringify(data));
+                window.location.href="video.html";
+            })
+        }
+
+        
 
         
 
@@ -210,7 +225,7 @@ const searchBar = (data)=>{
         
 
     }else{
-        data.forEach(({snippet,id:{videoId}}) => {
+        data.forEach(({snippet,id:{videoId},snippet:{channelId}}) => {
 
             // let img = snippet.thumbnails.high.url;
             let title = snippet.title;
@@ -228,7 +243,8 @@ const searchBar = (data)=>{
     
             let data={
                 snippet,
-                videoId
+                videoId,
+                channelId
             }
             div.addEventListener("click",()=>{
                 localStorage.setItem("query",JSON.stringify(snippet.channelTitle));

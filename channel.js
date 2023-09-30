@@ -9,18 +9,43 @@ let data = JSON.parse(video);
 
 
 
-let Api = "AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E";
+let Api = "AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM";
 
-const app = async()=>{
-    let q = localStorage.getItem("channelName");
-    let query = JSON.parse(q);
+const avatar= async(data)=>{
 
-    let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${query}&key=${Api}`);
+    let res = await fetch(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${data.channelId}&maxResults=25&key=${Api}`);
+    
+    let d= await res.json();
+    // console.log(data.snippet)
+    d.items.forEach(({snippet,statistics})=>{
+        localStorage.setItem("avatar",JSON.stringify(snippet.thumbnails.default.url));
+    localStorage.setItem("subscriber",JSON.stringify(statistics.subscriberCount));
+        
+    });
+    
+
+}
+avatar(data);
+
+const app = async(data1)=>{
+    
+    let title = document.getElementById("title");
+    // console.log(data1.channelId)
+  
+    title.innerText=data1.snippet.title+" - YouTube";
+
+    
+   
+
+    let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=${data1.channelId}&maxResults=25&type=video&key=${Api}`);
+    // 'https://youtube.googleapis.com/youtube/v3/playlists?part=snippet%2CcontentDetails&channelId=UCq-Fj5jknLsUf-MWSy4_brA&maxResults=25&key=[YOUR_API_KEY]' \
+
     let data = await res.json();
+    // console.log(data)
     
  append(data.items);
 }
-app();
+app(data);
 
 
 
@@ -33,9 +58,10 @@ const mostPopular = async (data)=>{
         
     // let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=100&chart=mostPopular&regionCode=IN&key=${Api}`);
     let data1 = await res.json();
-    console.log(data1.items)
+    // console.log(data1.items)
     
     banner(data1.items);
+   
     
 
     }
@@ -86,25 +112,25 @@ mostPopular(data);
 
 
 const banner = (data)=>{
+    // console.log(data)
 
+    data.forEach(({snippet,brandingSettings})=>{
+        let page1 = document.getElementById("page-1");
+        let subscriber = localStorage.getItem("subscriber");
 
-    let page1 = document.getElementById("page-1");
+        let d = JSON.parse(subscriber);
 
-
-    let subscriber = localStorage.getItem("subscriber");
-
-    let d = JSON.parse(subscriber);
-
-    let img = data[0].snippet.thumbnails.medium.url;
+    let img = snippet.thumbnails.medium.url;
     
-    let title = data[0].snippet.title;
-    let customName =  data[0].snippet.customUrl;
-    let intro = data[0].brandingSettings.channel.description;
-    let brand = data[0].brandingSettings.image.bannerExternalUrl;
+    let title = snippet.title;
+    let customName =  snippet.customUrl;
+    let intro = brandingSettings.channel.description;
+    let brand = brandingSettings.image.bannerExternalUrl;
     let int = intro.slice(0,25);
 
     localStorage.setItem("channelName",JSON.stringify(customName));
     localStorage.setItem("avatar",JSON.stringify(img));
+    
     
 
 
@@ -168,6 +194,9 @@ const banner = (data)=>{
 
     section.append(image,div);
     page1.append(section);
+    })
+
+    
 
 
 }
@@ -176,8 +205,8 @@ const banner = (data)=>{
 const append = (data)=>{
 
     
-    data.forEach(({snippet,id:{videoId}}) => {
-        console.log(snippet)
+    data.forEach(({snippet,id:{videoId},snippet:{channelId}}) => {
+        // console.log(snippet)
         let side = document.getElementById("sec-2");
         let img = snippet.thumbnails.high.url;
         let channelTitle = snippet.channelTitle;
@@ -211,25 +240,12 @@ const append = (data)=>{
 
 
         // Cname.append(Cicon)
-        if(channelTitle == title){
-           
-            
-
+        // let d = localStorage.getItem("")
+       
             let data={
                 snippet,
                 videoId,
-                
-            }
-            div1.addEventListener("click",()=>{
-                localStorage.setItem("video",JSON.stringify(data));
-                window.location.href="channel.html";
-            })
-
-        }
-        else{
-            let data={
-                snippet,
-                videoId,
+                channelId,
                
             }
             div1.addEventListener("click",()=>{
@@ -237,7 +253,7 @@ const append = (data)=>{
                 window.location.href="video.html";
             })
 
-        }
+        
 
       
 
@@ -336,7 +352,7 @@ const searchBar = (data)=>{
         
 
     }else{
-        data.forEach(({snippet,id:{videoId}}) => {
+        data.forEach(({snippet,id:{videoId},snippet:{channelId}}) => {
 
             // let img = snippet.thumbnails.high.url;
             let title = snippet.title;
@@ -354,7 +370,9 @@ const searchBar = (data)=>{
     
             let data={
                 snippet,
-                videoId
+                videoId,
+                channelId,
+
             }
             div.addEventListener("click",()=>{
                 localStorage.setItem("query",JSON.stringify(snippet.channelTitle));

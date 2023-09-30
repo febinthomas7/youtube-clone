@@ -2405,6 +2405,7 @@ a{
   
   grid-template-columns: repeat(1,1fr);
   margin-inline: 0px;
+  width: 100%;
   
 }
 #page-1 section .Mdiv .div3> button {
@@ -2433,10 +2434,20 @@ a{
 }
 #sec-2 section > img {
  border-radius: 0px;
+ height: 210px;
 }
+#sec-2 section  div> .div2{
+  padding: 14px;
+  gap: 12px;
+  display: flex;
+  flex-direction: column;
+ }
 #page-1 section .Mdiv >.divM {
   display: flex;
   flex-direction: column;
+}
+#page-1 section .Mdiv >.div3 {
+  padding: 10px;
 }
 #container div{
   height: 100%;
