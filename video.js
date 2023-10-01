@@ -424,6 +424,233 @@ const desc = (data2)=>{
 
 }
 
+const comments = async()=>{
+
+
+    let video = localStorage.getItem("video");
+    let vId = JSON.parse(video);
+    let res = await fetch(`https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=100&videoId=${vId.videoId}&key=${Api}`);
+    let data = await res.json();
+    // console.log(data)
+    comm(data.items)
+}
+comments();
+
+const comm = (data)=>{
+    console.log(data)
+
+    data.forEach(({snippet:{topLevelComment},replies,snippet})=>{
+
+        // console.log(topLevelComment);
+        
+        // replies.filter( x => x !== undefined)
+        // console.log(replies)
+
+        // replies.forEach(({comments})=>{
+
+        //     console.log(comments)
+        // })
+        // let comment1 = document.getElementById("comment1");
+        // let c12 = document.createElement("div");
+        // c12.id="c1-2";
+        // c12.innerText="Comments";
+        // let span = document.createElement("span");
+        // span.innerText=" 6.5K"
+        // let c22 = document.createElement("div");
+        // c22.id="c2-2";
+
+        // let cDiv = document.createElement("div");
+        // let cImg = document.createElement("img");
+        // cImg.src="error.png";
+        // cDiv.append(cImg);
+
+        // let p = document.createElement("p");
+        // p.innerText="Congratulations on first face cam man 👍👍❤️❤️";
+
+        // let i = document.createElement("i");
+        // i.className="fa fa-caret-down";
+        // c12.append(span);
+        // c22.append(cDiv,p,i);
+
+        // comment1.append(c12,c22)
+        let user = topLevelComment.snippet.authorProfileImageUrl;
+        let time = topLevelComment.snippet.publishedAt;
+        let author = topLevelComment.snippet.authorDisplayName;
+        let text = topLevelComment.snippet.textOriginal;
+        let likes = topLevelComment.snippet.likeCount;
+
+        let comment = document.getElementById("comment");
+        let div = document.createElement("div");
+       
+        
+
+        let userImg = document.createElement("img");
+        userImg.src= user;
+        userImg.style.height="40px";
+        userImg.style.cursor="pointer";
+
+        let d3 = document.createElement("div");
+        d3.className="d-3"
+        let h5 = document.createElement("h5");
+        h5.innerText= author +" ";
+        let strong = document.createElement("strong");
+
+        let h5sec = document.createElement("h5");
+        h5sec.innerText=text;
+        let sn = time
+        let le = sn.slice(0,4);
+        let date = sn.slice(8,10);
+        let mon = sn.slice(0,10);
+        let today = new Date(mon);
+        let month = today.toLocaleString('default', { month: 'short' });
+
+        strong.innerText= " "+ date +month;
+        h5.append(strong);
+
+        let d1 = document.createElement("div");
+        d1.id ="d-1";
+        let d1Div = document.createElement("div");
+        let d1I= document.createElement("i");
+        d1I.className="fa-regular fa-thumbs-up";
+        let d1Strong = document.createElement("strong");
+        d1Strong.innerText = likes;
+
+        let d1Div2 = document.createElement("div");
+        let d1I2= document.createElement("i");
+        d1I2.className="fa-regular fa-thumbs-down";
+
+        let d1Div3 = document.createElement("div");
+        d1Div3.id="d-11";
+        d1Div3.style.padding="7px 13px";
+        d1Div3.style.borderRadius="50px";
+        let d1I3= document.createElement("i");
+        d1I3.className="fa-regular fa-message";
+
+        let d2= document.createElement("div");
+        d2.className="d-2";
+
+        let div4 = document.createElement("div");
+        div4.className="d-4";
+        let d_2 = document.createElement("div");
+        d_2.id="d-2";
+        let d5 = document.createElement("div");
+        d5.className="d-5";
+        let d5Div = document.createElement("div");
+        let d5I = document.createElement("i");
+        // d5I.className="fa fa-caret-down";
+        // d5I.id="I";
+        // let d5Div1 = document.createElement("div");
+        // d5Div1.innerText="2 replies";
+        let d_1 = document.createElement("div");
+        d_1.className="d-1";
+
+
+        //  let reply_userName = snippet.authorDisplayName;
+        //  let reply_userPhoto =snippet.authorProfileImageUrl;
+        //  let reply_time =snippet.publishedAt;
+        //  let reply_likes =snippet.likeCount;
+        //  let reply_comment =snippet.textOriginal;
+
+
+
+        let links = document.createElement("div");
+        links.id="myLinks";
+
+        let linkDiv=document.createElement("div");
+        linkDiv.style.marginLeft="10px";
+
+        
+
+        let linkDiv1 = document.createElement("div");
+        let linkh5 = document.createElement("h5");
+        // linkh5.innerText=reply_userName;
+        linkh5.style.alignItems="center";
+        let linkImg =document.createElement("img");
+        // linkImg.src= reply_userPhoto;
+        linkImg.style.height="25px";
+        let linkstrong = document.createElement("strong");
+        // linkstrong.innerText= reply_time;
+
+        let linkh5_2 = document.createElement("h5");
+        // linkh5_2.innerText=reply_comment;
+        linkh5_2.style.marginLeft="33px";
+
+
+
+        let linkDiv2 = document.createElement("div");
+        linkDiv2.id="d-1";
+        linkDiv2.style.marginLeft="27px";
+
+        let linkDiv2Div1 = document.createElement("div");
+        let linkDiv2Div1I = document.createElement("i");
+        linkDiv2Div1I.className="fa-regular fa-thumbs-up";
+        let linkdiv1Strong = document.createElement("strong");
+        // linkdiv1Strong.innerText=reply_likes;
+
+        linkDiv2Div1.append(linkDiv2Div1I,linkdiv1Strong);
+        let linkDiv2Div2 = document.createElement("div");
+        linkDiv2Div2.id="d-1";
+        let linkDiv2Div2I = document.createElement("i");
+        linkDiv2Div2I.className="fa-regular fa-thumbs-down";
+        linkDiv2Div2.append(linkDiv2Div2I);
+
+        let linkDiv2Div3 = document.createElement("div");
+        linkDiv2Div3.id="d-11";
+        linkDiv2Div3.style.padding="7px 13px";
+        linkDiv2Div3.style.borderRadius="50px";
+        let linkDiv2Div3I = document.createElement("i");
+        linkDiv2Div3I.className="fa-regular fa-message";
+        linkDiv2Div3.append(linkDiv2Div3I);
+
+
+        
+
+       
+        
+        d5.append(d5Div)
+        d_2.append(d5);
+        div4.append(d_2);
+
+        d1Div3.append(d1I3);
+        d1Div2.append(d1I2);
+        d1Div.append(d1I,d1Strong);
+        d1.append(d1Div,d1Div2,d1Div3);
+
+
+        linkDiv2.append(linkDiv2Div1,linkDiv2Div2,linkDiv2Div3);
+
+        linkh5.append(linkImg,linkstrong)
+        linkDiv1.append(linkh5,linkh5_2)
+        linkDiv.append(linkDiv1,linkDiv2)
+        links.append(linkDiv);
+        
+        d3.append(h5,h5sec,d1,div4,links);
+        div.append(userImg);
+
+        let UserchannelID = topLevelComment.snippet.authorChannelId.value;
+        let videoID = snippet.videoID;
+
+        div.addEventListener("click",()=>{
+            let data={
+                UserchannelID,
+                videoID,
+
+            }
+
+             localStorage.setItem("video",JSON.stringify(data));
+             window.location.href="channel.html";
+
+        })
+        d2.append(div,d3);
+        d_1.append(d2);
+        comment.append(d_1);
+        
+
+
+
+    })
+}
+
 
 
 

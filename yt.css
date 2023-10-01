@@ -1720,7 +1720,7 @@ cursor:pointer;
   content: "";
   width: 98%;
   height: 2px;
-  background-color: #dbdbdb;
+  background-color: var(--secondary-color);
   display: block;
 }
 #c-3{
@@ -1730,7 +1730,7 @@ cursor:pointer;
   
   margin-left: 8px;
   
-  width: 1156px;
+  width: 100%;
   
   
 }
@@ -1738,14 +1738,18 @@ cursor:pointer;
   border: none;
   font-size:15px;
   outline: none;
-  width: 1156px;
+  width: 100%;
   padding-bottom: 6px;
-  
+  background-color:var(--primary-color);
+}
+#c-33 input[type="text"]{
+  color: var(--secondary-color);
 }
 #d-1{
   display: flex;
   margin-top: 5px;
   align-items: center;
+  color: var(--secondary-color);
 }
 #d-1 div{
   cursor: pointer;
@@ -1760,12 +1764,12 @@ cursor:pointer;
  
 }
 #d-11:hover{
-  background-color: whitesmoke;
+  background-color: var(--sixth-color);
 }
 #d-1 i:hover{
   
   
-  background-color: whitesmoke;
+  background-color: var(--sixth-color);
 }
 #d-1 img{
   margin-left: 0px;
@@ -1824,6 +1828,7 @@ cursor:pointer;
   display: flex;
   align-items: center;
   padding: 2px;
+  color: var(--secondary-color);
 }
 
 
@@ -2599,7 +2604,7 @@ footer .d {
 }
 .page-1 #video {
   width: 100%;
-  height: 480px;
+  height: 600px;
 }
 #video {
   margin-left: 0px;
@@ -2873,14 +2878,14 @@ flex-direction: column;
 #c-33 {
   padding: 12px;
   border-radius: 10px;
-  background-color: whitesmoke;
+  background-color:var(--primary-color);
   margin: 0;
   width: 305px;
   
 }
 #c-33 input {
   width: 292px;
-  background-color: whitesmoke;
+  background-color: var(--primary-color);
 }
 #c-3 img {
   width: 35px;
@@ -2889,8 +2894,9 @@ flex-direction: column;
 }
 .Guideline{
   padding: 20px 10px;
-  background-color: whitesmoke;
+  background-color: var(--primary-color);
   border-top: 1px solid #eadbdb;
+  
 }
 
 .Guideline span a{
@@ -2907,7 +2913,7 @@ flex-direction: column;
   left: 0;
   bottom: -535px;
   height: 535px;
-  background-color: white;
+  background-color: var(--primary-color);
   box-shadow:0 0px 50px black;
   display: initial;
    padding: 0;
@@ -2928,8 +2934,9 @@ flex-direction: column;
 #comment1{
   padding: 10px;
   border-radius: 10px;
-  background-color: whitesmoke;
+  background-color: var(--primary-color);
   margin: 10px;
+  color: var(--secondary-color);
 }
 /* #comment1:active{
  
@@ -2966,6 +2973,8 @@ flex-direction: column;
   position: fixed;
   width: 100vw;
   border-bottom: 1px solid #e0d8d8;
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
 }
 .Guideline{
   display:block;
@@ -2973,6 +2982,7 @@ flex-direction: column;
 }
 .Guideline p{
   margin-top: 44px; 
+  color: var(--secondary-color);
   
 }
 
