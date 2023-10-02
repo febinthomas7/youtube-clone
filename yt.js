@@ -120,6 +120,7 @@ const app = (data)=>{
     container.innerHTML = null;
     // console.log(data)
     data.forEach(({snippet,id:{videoId},snippet:{channelId}}) => {
+       
 
         let img = snippet.thumbnails.high.url;
         let channelTitle = snippet.channelTitle;
@@ -132,9 +133,17 @@ const app = (data)=>{
         let image = document.createElement('img');
         image.className = "homeImg";
         image.src = img;
+        let titleShort = title.slice(0,70);
         
         let name = document.createElement('p');
-        name.innerText = title;
+        name.title=title;
+        if(title.length <= 70){
+            name.innerText = title;
+        }
+        else{
+            name.innerText = titleShort+"..."; 
+        }
+        
 
         let Cname = document.createElement('span');
         Cname.innerText = channelTitle;
@@ -158,6 +167,7 @@ const app = (data)=>{
                 channelId,
             }
             div.addEventListener("click",()=>{
+                localStorage.setItem("query",JSON.stringify(channelTitle));
                 localStorage.setItem("video",JSON.stringify(data));
                 window.location.href="channel.html";
             })
@@ -169,6 +179,8 @@ const app = (data)=>{
                 channelId,
             }
             div.addEventListener("click",()=>{
+
+                localStorage.setItem("query",JSON.stringify(channelTitle));
                 localStorage.setItem("video",JSON.stringify(data));
                 window.location.href="video.html";
             })

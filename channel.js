@@ -149,6 +149,7 @@ const banner = (data)=>{
     div1.className="div1";
     let div2 = document.createElement("div");
     div2.className="div2";
+    div2.style.cursor="pointer";
     let div3 = document.createElement("div");
     div3.className="div3";
     let btn = document.createElement("button");
@@ -176,6 +177,7 @@ const banner = (data)=>{
     p.innerText=customName +" "+ d +" subscribers";
 
     let p1 = document.createElement("p");
+    p1.title=intro;
     p1.innerText=int+"...";
     div3.append(btn);
     div2.append(span,p,p1);
@@ -214,6 +216,7 @@ const append = (data)=>{
 
         let div = document.createElement('div');
         let div1 = document.createElement("section");
+        div1.style.cursor="pointer";
         let image = document.createElement('img');
         let div2 = document.createElement("div");
            div2.className="div2";
@@ -225,7 +228,13 @@ const append = (data)=>{
         
         let t = title.slice(0,50);
         let name = document.createElement('h5');
-        name.innerText = t+"...";
+        name.title=title;
+        if(title.length <= 70){
+            name.innerText = title;
+        }
+        else{
+            name.innerText = t+"..."; 
+        }
 
         let Cname = document.createElement('p');
         Cname.innerText = channelTitle;

@@ -77,12 +77,21 @@ const desc = (data2)=>{
 
     let container = document.getElementById("a55");
     let caps = document.getElementById("caps");
-    
+    console.log(data2)
 
 
     
 
     data2.forEach(({snippet,statistics})=>{
+
+
+        let comments = document.getElementById("c-2");
+        comments.innerText=statistics.commentCount + " Comments";
+
+        let c1_2 = document.getElementById("c1-2");
+        let span = document.createElement("span");
+        span.innerText=statistics.commentCount;
+        c1_2.append(span);
 
         let strong = document.createElement("strong");
         let strong1 = document.createElement("strong");
@@ -276,6 +285,7 @@ const desc = (data2)=>{
          let sub = document.createElement("div");
          sub.className="sub";
          let h5 = document.createElement("h5");
+         h5.title= snippet.channelTitle;
          let h5short= snippet.channelTitle.slice(0,6);
          h5.innerText= h5short+"...";
          let subI = document.createElement("i");
@@ -438,7 +448,24 @@ comments();
 
 const comm = (data)=>{
     console.log(data)
+    let c_3 = document.getElementById("c-3");
+    let c_3i = document.createElement("i");
+    c_3i.className="fa-solid fa-circle-user";
+    let c_2 = document.getElementById("c2-2");
+    let c_2i = document.createElement("i");
+    c_2i.className="fa-solid fa-circle-user";
+    let c_2Div = document.createElement("div");
+    let c_2p= document.createElement("p");
+    c_2p.innerText="Add a comment...";
+    let c_2ii= document.createElement("i");
+    c_2ii.className="fa fa-caret-down";
 
+
+    c_2Div.append(c_2i)
+    c_2.append(c_2Div,c_2p,c_2ii);
+
+    
+    c_3.append(c_3i);
     data.forEach(({snippet:{topLevelComment},replies,snippet})=>{
 
         // console.log(topLevelComment);
@@ -473,6 +500,8 @@ const comm = (data)=>{
         // c22.append(cDiv,p,i);
 
         // comment1.append(c12,c22)
+        
+        
         let user = topLevelComment.snippet.authorProfileImageUrl;
         let time = topLevelComment.snippet.publishedAt;
         let author = topLevelComment.snippet.authorDisplayName;
@@ -657,7 +686,9 @@ const comm = (data)=>{
 const mostPopular = async ()=>{
 
     try{
-        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&key=${Api}`);
+        let q = localStorage.getItem("query");
+        let query = JSON.parse(q);
+        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=100&q=${query}%20munde&key=${Api}`);
     // let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=100&chart=mostPopular&regionCode=IN&key=${Api}`);
     let data = await res.json();
     // console.log(data)
@@ -744,11 +775,18 @@ const append = async(data1)=>{
 
         image.src = img;
         
+        let titleShort = title.slice(0,55);
         let name = document.createElement('h5');
-        name.innerText = title;
+        name.title=title;
+        if(title.length <= 55){
+            name.innerText = title ;
+        }else{
+            name.innerText = titleShort +"..." ;
+        }
+        
 
         let Cname = document.createElement('p');
-        Cname.innerText = channelTitle;
+        Cname.innerText = channelTitle +" ";
 
         let Cicon = document.createElement("i");
         Cicon.className ="fa fa-check-circle";
