@@ -86,7 +86,7 @@ onAuthStateChanged(auth,(result)=>{
         
         profile.src = result.photoURL;
         photo.src = result.photoURL;
-        pic.src = result.photoURL;
+        // pic.src = result.photoURL;
 
     }
     else{

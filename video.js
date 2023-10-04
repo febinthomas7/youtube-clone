@@ -77,7 +77,7 @@ const desc = (data2)=>{
 
     let container = document.getElementById("a55");
     let caps = document.getElementById("caps");
-    console.log(data2)
+    // console.log(data2)
 
 
     
