@@ -42,14 +42,21 @@
           <div class="dropdown-content" id="dropdown" >
             <a href="#" id="dark"><i class="fa-regular fa-moon"></i><span>Dark Mode </span></a>
             <a href="#" id="light"><i class="fa-regular fa-sun"></i><span>Normal Mode </span></a>
+            <a href="#" id="signIn"><i class="fa-regular fa-circle-user"></i><span>signIn </span></a>
+            <a href="#" id="signOut"><i class="fa-regular fa-circle-user"></i><span>signOut </span></a>
           </div>
         </i>
 
       
-        <div class="outdent">
+        <div class="outdent" id="signInPage">
           <i class="fa-solid fa-circle-user"></i>
 
-            <h4>Sign in</h4>
+            <h4 id="signIn">Sign in</h4>
+        </div>
+        <div class="outdent" id="signOutPage">
+          <img id="profile">
+
+            
         </div>
     </div>
    
@@ -264,7 +271,16 @@
   
         <section id="comment1">
           <div id="c1-2">Comments </div>
-          <div id="c2-2"></div>
+          <div id="c2-2">
+            <div id="In">
+              <i class="fa-solid fa-circle-user"></i>
+            </div>
+            <div id="Out">
+              <img src="" id="photo">
+            </div>
+            <p>Add a comment...</p>
+            <i class="fa fa-caret-down"></i>
+          </div>
         </section>
         
         <div id="comment" class="comment">
@@ -287,7 +303,14 @@
             </div>
   
             <div class="c-3">
-              <div id="c-3"></div>
+              <div id="c-3">
+                <div  id="OutP">
+                  <i class="fa-solid fa-circle-user"></i>
+                 </div> 
+                 <div  id="InP">
+                  <img id="pic">
+                 </div> 
+              </div>
               <div id="c-33"> <input type="text" placeholder="Add a comment..."></div>
               
              </div>
@@ -370,6 +393,7 @@ if(cl){
 }
 </script>
 <script src="video.js"></script>
+<script src="app2.js" type="module"></script>
 
 </body>
 </html> 

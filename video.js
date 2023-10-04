@@ -6,7 +6,7 @@ let data = JSON.parse(video);
 
 
 
-let Api = "AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM";
+let Api = "AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E";
 const avatar= async(data)=>{
     // console.log(data)
 
@@ -447,25 +447,7 @@ const comments = async()=>{
 comments();
 
 const comm = (data)=>{
-    console.log(data)
-    let c_3 = document.getElementById("c-3");
-    let c_3i = document.createElement("i");
-    c_3i.className="fa-solid fa-circle-user";
-    let c_2 = document.getElementById("c2-2");
-    let c_2i = document.createElement("i");
-    c_2i.className="fa-solid fa-circle-user";
-    let c_2Div = document.createElement("div");
-    let c_2p= document.createElement("p");
-    c_2p.innerText="Add a comment...";
-    let c_2ii= document.createElement("i");
-    c_2ii.className="fa fa-caret-down";
-
-
-    c_2Div.append(c_2i)
-    c_2.append(c_2Div,c_2p,c_2ii);
-
-    
-    c_3.append(c_3i);
+  
     data.forEach(({snippet:{topLevelComment},replies,snippet})=>{
 
         // console.log(topLevelComment);
