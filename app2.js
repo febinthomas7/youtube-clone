@@ -70,6 +70,8 @@ const signingOut = async()=>{
 }
 
 signIn.addEventListener("click",signin);
+signInPage.addEventListener("click",signin);
+
 signout.addEventListener("click",signingOut);
 // In.addEventListener("click",signin);
 // Out.addEventListener("click",signingOut);

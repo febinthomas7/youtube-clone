@@ -22,6 +22,8 @@ const auth = getAuth();
 let signInPage = document.getElementById("signInPage");
 let signOutPage = document.getElementById("signOutPage");
 let signIn = document.getElementById("signIn");
+let signInn = document.getElementById("signInn");
+
 let  profile = document.getElementById("profile");
 let signout = document.getElementById("signOut");
 
@@ -33,9 +35,9 @@ let photo = document.getElementById("photo");
 let Out = document.getElementById("Out");
 
 
-let Inp = document.getElementById("InP");
-let pic = document.getElementById("pic");
-let Outp = document.getElementById("Outp");
+// let Inp = document.getElementById("InP");
+// let pic = document.getElementById("pic");
+// let Outp = document.getElementById("Outp");
 
 const provider = new GoogleAuthProvider(app);
 
@@ -70,6 +72,8 @@ const signingOut = async()=>{
 }
 
 signIn.addEventListener("click",signin);
+signInPage.addEventListener("click",signin);
+
 signout.addEventListener("click",signingOut);
 In.addEventListener("click",signin);
 Out.addEventListener("click",signingOut);
