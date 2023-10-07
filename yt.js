@@ -22,7 +22,7 @@ if(close){
 
 
 
-let Api = "AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E";
+let Api = "AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM";
 // AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM
 
 // AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E
@@ -169,7 +169,12 @@ const app = (data)=>{
             div.addEventListener("click",()=>{
                 localStorage.setItem("query",JSON.stringify(channelTitle));
                 localStorage.setItem("video",JSON.stringify(data));
-                window.location.href="channel.html";
+
+                setTimeout(()=>{
+
+                    window.location.href="channel.html";
+                },1000)
+                
             })
         }
         else{
@@ -182,7 +187,12 @@ const app = (data)=>{
 
                 localStorage.setItem("query",JSON.stringify(channelTitle));
                 localStorage.setItem("video",JSON.stringify(data));
-                window.location.href="video.html";
+
+                setTimeout(()=>{
+
+                    window.location.href="video.html";
+                },1000)
+                
             })
         }
 
