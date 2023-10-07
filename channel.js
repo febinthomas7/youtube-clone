@@ -259,7 +259,10 @@ const append = (data)=>{
             }
             div1.addEventListener("click",()=>{
                 localStorage.setItem("video",JSON.stringify(data));
-                window.location.href="video.html";
+                setTimeout(()=>{
+                    window.location.href="video.html";
+                },1000)
+                
             })
 
         

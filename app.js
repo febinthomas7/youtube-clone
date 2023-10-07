@@ -51,6 +51,7 @@ let signin = async()=>{
 
         const data = await signInWithPopup(auth, provider);
         let result = data.user;
+        location.reload();
         // console.log(result.displayName);
 
     }
@@ -64,7 +65,7 @@ let signin = async()=>{
 const signingOut = async()=>{
 
     signOut(auth).then(()=>{
-
+        location.reload();
 
     }).catch((e)=>{
         console.log(e);
@@ -94,8 +95,7 @@ Out.addEventListener("click",signingOut);
         
         profile.src = result.photoURL;
         photo.src = result.photoURL;
-        // localStorage.setItem("username",result.uid);
-        // pic.src = result.photoURL;
+        
         let snipp = localStorage.getItem("video");
         let s = JSON.parse(snipp);
 
@@ -104,9 +104,12 @@ Out.addEventListener("click",signingOut);
     
  
     // console.log(username)
-    let id = result.uid;
-    console.log(id)
+        let id = result.uid;
+        // console.log(id)
+    
         const colref = collection(db,id);
+    
+        
 
 
 
@@ -120,13 +123,13 @@ Out.addEventListener("click",signingOut);
         snapshot.docs.forEach((doc)=>{
            users.push({...doc.data(),id:doc.id})
         })
-        console.log(users);
-    
+       
+        // console.log(users);
         })
 
-         let A = document.getElementById("container")
-         A.addEventListener("click",()=>{
-            console.log("hi")
+         let container = document.getElementById("container")
+         container.addEventListener("click",()=>{
+            // console.log("hi")
                 addDoc(colref,{
                     channelId,
                     snippet,
@@ -137,6 +140,7 @@ Out.addEventListener("click",signingOut);
               
                })
 
+
     }
     else{
         result
@@ -144,8 +148,7 @@ Out.addEventListener("click",signingOut);
         signout.style.display="none";
         OutPage.style.display="none";
         Out.style.display="none";
-        // localStorage.removeItem("username");
-        // Outp.style.display="none";
+       
         
     }
 
@@ -156,75 +159,11 @@ Out.addEventListener("click",signingOut);
 
 
 
-// let b = document.getElementById("b");
 
 
-    // let result = auth
-    let snipp = localStorage.getItem("video");
-    let s = JSON.parse(snipp);
-
-    const {channelId,snippet,videoId}=s;
 
     
-
-    let username = localStorage.getItem("username");
-    // console.log(username)
-const colref = collection(db,username);
-
-
-
  
-
-   
-    onSnapshot(colref,(snapshot)=>{
-        let users = localStorage.getItem("username");
-         users=[];
-        snapshot.docs.forEach((doc)=>{
-           users.push({...doc.data(),id:doc.id})
-        })
-        console.log(users);
-    
-    })
-
-
-
-
-     
-    // let A = document.querySelectorAll(".homeDiv");
-    let A = document.getElementById("container")
-    A.addEventListener("click",()=>{
-            console.log("hi")
-                addDoc(colref,{
-                    channelId,
-                    snippet,
-                    videoId,
-                    created_at:serverTimestamp(),
-                })
-        
-              
-               })
-
-
-    //    A.forEach((div)=>{
-
-    //     div.addEventListener("click",()=>{
-    //     console.log("hi")
-    //         addDoc(colref,{
-    //             channelId,
-    //             snippet,
-    //             videoId,
-    //             created_at:serverTimestamp(),
-    //         })
-    
-          
-    //        })
-    //    })
-
-
-
-   
-    
-    //       (washingtonRef,obj);   
  
 
 

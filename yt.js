@@ -22,7 +22,7 @@ if(close){
 
 
 
-let Api = "AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM";
+let Api = "AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E";
 // AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM
 
 // AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E
@@ -170,10 +170,10 @@ const app = (data)=>{
                 localStorage.setItem("query",JSON.stringify(channelTitle));
                 localStorage.setItem("video",JSON.stringify(data));
 
-                setTimeout(()=>{
+                
 
                     window.location.href="channel.html";
-                },1000)
+                
                 
             })
         }
@@ -188,10 +188,13 @@ const app = (data)=>{
                 localStorage.setItem("query",JSON.stringify(channelTitle));
                 localStorage.setItem("video",JSON.stringify(data));
 
-                setTimeout(()=>{
+               
 
+                setTimeout(()=>{
                     window.location.href="video.html";
                 },1000)
+                  
+                
                 
             })
         }

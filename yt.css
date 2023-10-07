@@ -253,7 +253,7 @@ color: var(--secondary-color);
     --signIn-color:#1d578ad5;
     --signIn-border-color:#383838;
     --subscribe-btn:#c7c7c7;
-    --shadow: 123px 8px 37px 50px #5668561f, 0 0 45px 60px #4e594e00, 0 21px 51px 105px #a1baa11a;
+    --shadow: -6px -67px 114px 195px #00ac001f, 0 0 0px 84px #0a4b0a00, 0 89px 69px 104px #238a231a;
     --numbers:#b2afa;
     --sidenav-footer:#1c1a1a;
 
@@ -2198,6 +2198,15 @@ footer > div:nth-child(4){
 }
 
 @media(max-width:490px){
+  .middleDiv i {
+    visibility:visible !important;
+}
+#container> div:hover .middleDiv i{
+
+  visibility: unset !important;
+  color: var(--secondary-color);
+
+}
   #capI{
     display: flex;
   }

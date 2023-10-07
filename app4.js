@@ -27,6 +27,7 @@ let signOutPage = document.getElementById("signOutPage");
 let signIn = document.getElementById("signIn");
 let  profile = document.getElementById("profile");
 let signout = document.getElementById("signOut");
+let out = document.getElementById("out");
 
 //smallNav
 // let InPage = document.getElementById("InPage");
@@ -87,13 +88,13 @@ onAuthStateChanged(auth,(result)=>{
 
         signInPage.style.display="none";
         signIn.style.display="none";
+        out.style.display="flex";
         // InPage.style.display="none";
-        In.style.display="none";
-        OutP.style.display="none";
+        // In.style.display="none";
+        // OutP.style.display="none";
         
         profile.src = result.photoURL;
-        photo.src = result.photoURL;
-        pic.src = result.photoURL;
+      
 
         let snipp = localStorage.getItem("video");
         let s = JSON.parse(snipp);
@@ -114,12 +115,12 @@ onAuthStateChanged(auth,(result)=>{
             snapshot.docs.forEach((doc)=>{
                users.push({...doc.data(),id:doc.id})
             })
-            console.log(users);
+            // console.log(users);
         
             })
     
-             let side = document.getElementById("side")
-             side.addEventListener("click",()=>{
+            let sec_2 = document.getElementById("sec-2");
+            sec_2.addEventListener("click",()=>{
                 console.log("hi")
                     addDoc(colref,{
                         channelId,
@@ -142,6 +143,7 @@ onAuthStateChanged(auth,(result)=>{
         
     }
 })
+
 
 
 

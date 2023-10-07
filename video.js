@@ -6,7 +6,7 @@ let data = JSON.parse(video);
 
 
 
-let Api = "AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM";
+let Api = "AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E";
 const avatar= async(data)=>{
     // console.log(data)
 
@@ -803,7 +803,10 @@ const append = async(data1)=>{
             }
             div1.addEventListener("click",()=>{
                 localStorage.setItem("video",JSON.stringify(data));
-                window.location.href="video.html";
+                setTimeout(()=>{
+                    window.location.href="video.html";
+                },1000)
+               
             })
 
         }
