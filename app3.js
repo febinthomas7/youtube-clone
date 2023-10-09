@@ -104,7 +104,7 @@ Out.addEventListener("click",signingOut);
  
     // console.log(username)
         let id = result.uid;
-        console.log(id)
+        // console.log(id)
     
         const colref = collection(db,id);
     
