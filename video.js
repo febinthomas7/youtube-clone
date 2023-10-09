@@ -294,8 +294,44 @@ const desc = (data2)=>{
          subI.style.fontSize="15px";
          let subs = localStorage.getItem("subscriber");
          let subData = JSON.parse(subs);
+         let subsData =subData;
+         
+         
+
+
+         subsData = subsData.split("");
+         console.log(subsData[0])
+         if(subsData.length == 3){
+            subsData = subData;
+           
+         }
+         if(subsData.length == 4){
+            subsData = `${subsData[0]}K`;
+           
+         }
+         if(subsData.length == 5){
+            subsData = `${subsData[0]}${subsData[1]}K`
+           
+         }
+         if(subsData.length== 6){
+            subsData = `${subsData[0]}.${subsData[1]}${subsData[2]} lakh`
+           
+         }
+         if(subsData.length == 7){
+            subsData = `${subsData[0]}${subsData[1]}.${subsData[2]} lakh`
+           
+         }
+         if(subsData.length >= 8){
+            subsData = `${subsData[0]}.${subsData[1]}${subsData[2]} crore`
+           
+         }
+         
+       
+        //  let a = `${sub[0]}.${sub[1]}${sub[2]} lakh`
+         
+       
          let subP = document.createElement("p");
-         subP.innerText = subData;
+         subP.innerText = subsData;
          let subSpan = document.createElement("span");
          subSpan.innerText="subscribers";
          let subscribe = document.createElement("div");
