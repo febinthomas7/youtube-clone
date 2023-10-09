@@ -50,8 +50,8 @@ let signin = async()=>{
     try{
 
         const data = await signInWithPopup(auth, provider);
-        let result = data.user;
-        location.reload();
+        // let result = data.user;
+        
         // console.log(result.displayName);
 
     }
@@ -65,7 +65,7 @@ let signin = async()=>{
 const signingOut = async()=>{
 
     signOut(auth).then(()=>{
-        location.reload();
+       
 
 
     }).catch((e)=>{
@@ -87,6 +87,7 @@ onAuthStateChanged(auth,(result)=>{
     if(result){
 
         signInPage.style.display="none";
+        signOutPage.style.display="flex";
         signIn.style.display="none";
         out.style.display="flex";
         // InPage.style.display="none";
@@ -135,6 +136,7 @@ onAuthStateChanged(auth,(result)=>{
     }
     else{
         signOutPage.style.display="none";
+        signInPage.style.display="flex";
         signout.style.display="none";
         // OutPage.style.display="none";
         Out.style.display="none";

@@ -51,8 +51,7 @@ let signin = async()=>{
 
         const data = await signInWithPopup(auth, provider);
         let result = data.user;
-        location.reload();
-        // console.log(result.displayName);
+       
 
     }
     catch(e){
@@ -65,7 +64,7 @@ let signin = async()=>{
 const signingOut = async()=>{
 
     signOut(auth).then(()=>{
-        location.reload();
+        
 
     }).catch((e)=>{
         console.log(e);
@@ -88,8 +87,10 @@ Out.addEventListener("click",signingOut);
     if(result){
 
         signInPage.style.display="none";
+        signOutPage.style.display="flex";
         signIn.style.display="none";
         InPage.style.display="none";
+        OutPage.style.display="flex";
         In.style.display="none";
         // Inp.style.display="none";
         
@@ -144,9 +145,11 @@ Out.addEventListener("click",signingOut);
     }
     else{
         result
+        signInPage.style.display="flex";
         signOutPage.style.display="none";
         signout.style.display="none";
         OutPage.style.display="none";
+        InPage.style.display="flex";
         Out.style.display="none";
        
         

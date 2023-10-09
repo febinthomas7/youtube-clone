@@ -13,6 +13,18 @@ body {
   
   }
 
+  #out>#signInPage{
+    display: none;
+  }
+ #out > #signOutPage{
+    display: none;
+  }
+#smallnav >#OutPage{
+  display: none;
+}
+#smallnav >#InPage{
+  display: none;
+}
   hr{
     border: 0.1px solid gray;
     width: 90%;

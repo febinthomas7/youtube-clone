@@ -50,7 +50,7 @@ let signin = async()=>{
     try{
 
         const data = await signInWithPopup(auth, provider);
-        location.reload();
+       
         // let result = data.user;
         // console.log(result.displayName);
 
@@ -65,7 +65,7 @@ let signin = async()=>{
 const signingOut = async()=>{
 
     signOut(auth).then(()=>{
-        location.reload();
+        
 
     }).catch((e)=>{
         console.log(e);
@@ -88,8 +88,10 @@ Out.addEventListener("click",signingOut);
     if(result){
 
         signInPage.style.display="none";
+        signOutPage.style.display="flex";
         signIn.style.display="none";
         InPage.style.display="none";
+        OutPage.style.display="flex";
         In.style.display="none";
         // Inp.style.display="none";
         
@@ -190,8 +192,10 @@ Out.addEventListener("click",signingOut);
     else{
         result
         signOutPage.style.display="none";
+        signInPage.style.display="flex";
         signout.style.display="none";
         OutPage.style.display="none";
+        InPage.style.display="flex";
         Out.style.display="none";
 
         let  load = document.createElement("span");
