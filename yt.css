@@ -409,7 +409,17 @@ color: var(--secondary-color);
     display: flex;
     margin-inline: 16px;
     gap: 3px;
+    align-items: baseline;
     flex-direction: row;
+    justify-content: space-between;
+}
+#container div .lowerDiv  .loverdiv2 > button{
+  background-color:var(--sixth-color);
+  color: var(--secondary-color);
+}
+#container div .lowerDiv  .loverdiv2 > button:hover{
+  background-color:var(--fifth-color);
+  color: var(--secondary-color);
 }
 
 .lowerDiv i{

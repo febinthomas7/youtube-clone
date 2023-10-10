@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
 import { getAuth,GoogleAuthProvider ,signInWithPopup ,signOut,onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
-import { getFirestore,serverTimestamp,collection ,addDoc,onSnapshot} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+import { getFirestore,serverTimestamp,collection ,addDoc,onSnapshot,deleteDoc,doc} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -112,7 +112,6 @@ Out.addEventListener("click",signingOut);
     
         
 
-
         onSnapshot(colref,(snapshot)=>{
             
             let users = result.uid;
@@ -120,11 +119,11 @@ Out.addEventListener("click",signingOut);
             snapshot.docs.forEach((doc)=>{
                users.push({...doc.data(),id:doc.id})
             })
-            // console.log(users);
-            users.forEach(({channelId,snippet,videoId})=>{
+            
+            users.forEach(({channelId,snippet,videoId,id})=>{
                 let title = snippet.title;
                 let channelTitle = snippet.channelTitle;
-
+                // console.log(id, result.uid);
                 let container =  document.getElementById("container");
                 let Main = document.getElementById("Main");
                 Main.style.marginTop="14px";
@@ -159,22 +158,76 @@ Out.addEventListener("click",signingOut);
 
         let lowerDiv = document.createElement("div");
         lowerDiv.className="lowerDiv";
+        lowerDiv.style.height="25px";
+        lowerDiv.style.width="auto";
+        let loverdiv1 = document.createElement("div");
+        loverdiv1.className="loverdiv1";
+        loverdiv1.style.height="100%";
+        loverdiv1.style.width="auto";
+        loverdiv1.style.display="flex";
+        loverdiv1.style.flexDirection="row";
+
+        let loverdiv2 = document.createElement("div");
+        loverdiv2.className="loverdiv2";
+        loverdiv2.style.height="100%";
+        loverdiv2.style.width="auto";
+        loverdiv2.style.display="flex";
+        loverdiv2.style.flexDirection="row";
+
+        let lowerBtn = document.createElement("button");
+        lowerBtn.innerText="Remove";
+        lowerBtn.style.outline="none";
+        lowerBtn.style.border="none";
+        lowerBtn.style.borderRadius="4px";
+        lowerBtn.style.padding="5px";
+        lowerBtn.title="remove this video from history";
+        lowerBtn.style.cursor="pointer";
+
+
+
+
+        loverdiv2.append(lowerBtn)
         middleDiv.append(name,dots);
-        lowerDiv.append(Cname,tick);
+        loverdiv1.append(Cname,tick)
+        lowerDiv.append(loverdiv1,loverdiv2);
                 div.append(img,middleDiv,lowerDiv);
                 container.append(div);
      
      
+                
+                lowerBtn.addEventListener("click",()=>{
+                    console.log(id, result.uid);
+
+                    const docref = doc(db, result.uid, id)
+
+                    deleteDoc(docref)
+                    .then(()=>{
+                      
+                        let  load = document.createElement("span");
+                        let head = document.getElementById("header");
+
+                        load.className="loader";
+
+
+      
+                        setTimeout(function(){ head.append(load) }, 0);
+                        setTimeout(function(){ load.style.display ="none" }, 1000);
+
+                        location.reload();
+                    })
+
+                    
+
+                })
                 let data={
                     channelId,
                     snippet,
                     videoId,
                 }
-                div.addEventListener("click",()=>{
 
+                img.addEventListener("click",()=>{
                     localStorage.setItem("video",JSON.stringify(data));
                     window.location.href="video.html";
-
                 })
      
                 
@@ -190,7 +243,7 @@ Out.addEventListener("click",signingOut);
 
     }
     else{
-        result
+        
         signOutPage.style.display="none";
         signInPage.style.display="flex";
         signout.style.display="none";
