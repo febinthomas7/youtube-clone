@@ -19,7 +19,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app);
 
-
+let container= document.getElementById("container");
 let signInPage = document.getElementById("signInPage");
 let signOutPage = document.getElementById("signOutPage");
 let signIn = document.getElementById("signIn");
@@ -50,7 +50,7 @@ let signin = async()=>{
     try{
 
         const data = await signInWithPopup(auth, provider);
-       
+        location.reload();
         // let result = data.user;
         // console.log(result.displayName);
 
@@ -65,7 +65,7 @@ let signin = async()=>{
 const signingOut = async()=>{
 
     signOut(auth).then(()=>{
-        
+        location.reload();
 
     }).catch((e)=>{
         console.log(e);
@@ -93,7 +93,7 @@ Out.addEventListener("click",signingOut);
         InPage.style.display="none";
         OutPage.style.display="flex";
         In.style.display="none";
-        // Inp.style.display="none";
+        
         
         profile.src = result.photoURL;
         photo.src = result.photoURL;
@@ -121,6 +121,7 @@ Out.addEventListener("click",signingOut);
             })
             
             users.forEach(({channelId,snippet,videoId,id})=>{
+                // location.reload();
                 let title = snippet.title;
                 let channelTitle = snippet.channelTitle;
                 // console.log(id, result.uid);
@@ -250,6 +251,11 @@ Out.addEventListener("click",signingOut);
         OutPage.style.display="none";
         InPage.style.display="flex";
         Out.style.display="none";
+        
+      
+        
+        // Inp.style.display="none";
+        
 
         let  load = document.createElement("span");
         let head = document.getElementById("header");
@@ -266,6 +272,7 @@ Out.addEventListener("click",signingOut);
         let container = document.getElementById("Main");
         let div = document.createElement("div");
         div.className="errorDiv";
+        div.style.display="flex";
         div.style.marginTop="15%"
         let img = document.createElement("img");
         img.src="error.png";
@@ -275,6 +282,7 @@ Out.addEventListener("click",signingOut);
 
         let div2 = document.createElement("div");
         div2.className="errorDiv2";
+        div2.style.display="flex";
         let p1 = document.createElement("p");
         p1.innerText = "Check your connection.";
         let p2 = document.createElement("p");
@@ -283,6 +291,7 @@ Out.addEventListener("click",signingOut);
 
         let div3= document.createElement("div");
         div3.className="retry";
+        div3.style.display="flex";
         let retry = document.createElement("button");
         retry.innerText="Retry";
         div3.append(retry);

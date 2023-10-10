@@ -12,6 +12,9 @@ body {
      
   
   }
+  #container{
+    display: none;
+  }
 
   #out>#signInPage{
     display: none;
