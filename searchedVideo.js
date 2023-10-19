@@ -235,14 +235,19 @@ const input = async ()=>{
 const searchBar = (data)=>{
     let  container = document.getElementById("searchDiv");
     let query = document.getElementById("query").value;
+    let q = document.getElementById("query");
+    let fa_search = document.getElementById("fa-search");
 
     if(query == ""){
 
         container.innerHTML = null;
         container.style.padding = "0px";
-        
+        q.classList.remove("query");
+        fa_search.style.display="none";
 
     }else{
+        q.classList.add("query");
+        fa_search.style.display="flex";
         data.forEach(({snippet,id:{videoId}}) => {
 
             // let img = snippet.thumbnails.high.url;
@@ -303,7 +308,12 @@ const drop = ()=>{
 
 
 }
+const dr = ()=>{
+    const element = document.getElementById("dropd");
+    element.classList.toggle("drop");
 
+
+}
 
 
 let dark = document.getElementById("dark");

@@ -9,7 +9,7 @@ let data = JSON.parse(video);
 
 
 
-let Api = "AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM";
+let Api = "AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E";
 
 const avatar= async(data)=>{
 
@@ -344,26 +344,44 @@ const search= async ()=>{
 
     
 }
-const input = async ()=>{
-    let query = document.getElementById("query").value;
-    let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query}&key=${Api}`);
-    let data = await res.json();
+let query = document.getElementById("query");
+let timer;
 
-    searchBar(data.items);
+const debounce = (fun,delay)=>{
+
+     if(timer) clearTimeout(timer)
+     timer = setTimeout(fun,delay);
+    
+
+}
+const input = ()=>{
+
+
+    debounce(async()=>{
+      console.log(query.value)
+      let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query.value}&key=${Api}`);
+      let data = await res.json();
+      searchBar(data.items);
+    },500)
 
 }
 
 const searchBar = (data)=>{
     let  container = document.getElementById("searchDiv");
     let query = document.getElementById("query").value;
-
+    let q = document.getElementById("query");
+    let fa_search = document.getElementById("fa-search");
     if(query == ""){
 
         container.innerHTML = null;
         container.style.padding = "0px";
+        q.classList.remove("query");
+        fa_search.style.display="none";
         
 
     }else{
+        q.classList.add("query");
+        fa_search.style.display="flex";
         data.forEach(({snippet,id:{videoId},snippet:{channelId}}) => {
 
             // let img = snippet.thumbnails.high.url;

@@ -1,8 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
 import { getAuth,GoogleAuthProvider ,signInWithPopup ,signOut,onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
 import { getFirestore,serverTimestamp,collection ,addDoc,onSnapshot} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
-
-// import { getFirestore } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -25,21 +23,23 @@ const db = getFirestore(app);
 let signInPage = document.getElementById("signInPage");
 let signOutPage = document.getElementById("signOutPage");
 let signIn = document.getElementById("signIn");
+let signInn = document.getElementById("signInn");
+
 let  profile = document.getElementById("profile");
 let signout = document.getElementById("signOut");
-let out = document.getElementById("out");
 
 //smallNav
-// let InPage = document.getElementById("InPage");
-// let OutPage = document.getElementById("OutPage");
+let InPage = document.getElementById("InPage");
+let OutPage = document.getElementById("OutPage");
 let In = document.getElementById("In");
 let photo = document.getElementById("photo");
 let Out = document.getElementById("Out");
 
 
-let InP = document.getElementById("InP");
-let pic = document.getElementById("pic");
-let OutP = document.getElementById("OutP");
+
+// let Inp = document.getElementById("InP");
+// let pic = document.getElementById("pic");
+// let Outp = document.getElementById("Outp");
 
 const provider = new GoogleAuthProvider(app);
 
@@ -50,9 +50,8 @@ let signin = async()=>{
     try{
 
         const data = await signInWithPopup(auth, provider);
-        // let result = data.user;
-        
-        // console.log(result.displayName);
+        let result = data.user;
+       
 
     }
     catch(e){
@@ -65,8 +64,7 @@ let signin = async()=>{
 const signingOut = async()=>{
 
     signOut(auth).then(()=>{
-       
-
+        
 
     }).catch((e)=>{
         console.log(e);
@@ -79,10 +77,12 @@ signIn.addEventListener("click",signin);
 signInPage.addEventListener("click",signin);
 
 signout.addEventListener("click",signingOut);
-// In.addEventListener("click",signin);
-// Out.addEventListener("click",signingOut);
+In.addEventListener("click",signin);
+Out.addEventListener("click",signingOut);
 
-onAuthStateChanged(auth,(result)=>{
+  onAuthStateChanged(auth,(result)=>{
+   
+    
 
     if(result){
 
@@ -90,14 +90,15 @@ onAuthStateChanged(auth,(result)=>{
         signOutPage.style.display="flex";
         signIn.style.display="none";
         signout.style.display="flex";
-        out.style.display="flex";
         // InPage.style.display="none";
-        // In.style.display="none";
-        // OutP.style.display="none";
+        // OutPage.style.display="flex";
+        In.style.display="none";
+        Out.style.display="flex";
+        // Inp.style.display="none";
         
         profile.src = result.photoURL;
-      
-
+        photo.src = result.photoURL;
+        
         let snipp = localStorage.getItem("video");
         let s = JSON.parse(snipp);
 
@@ -107,46 +108,86 @@ onAuthStateChanged(auth,(result)=>{
  
     // console.log(username)
         let id = result.uid;
-        console.log(id)
+        // console.log(id)
     
         const colref = collection(db,id);
+    
+        
+
+
+
+ 
+
+   
         onSnapshot(colref,(snapshot)=>{
             
-            let users = result.uid;
-             users=[];
-            snapshot.docs.forEach((doc)=>{
-               users.push({...doc.data(),id:doc.id})
-            })
-            // console.log(users);
+        let users = result.uid;
+         users=[];
+        snapshot.docs.forEach((doc)=>{
+           users.push({...doc.data(),id:doc.id})
+        })
+       
+        // console.log(users);
+        })
+
+         let container = document.getElementById("container")
+         container.addEventListener("click",()=>{
+            // console.log("hi")
+                addDoc(colref,{
+                    channelId,
+                    snippet,
+                    videoId,
+                    created_at:serverTimestamp(),
+                })
         
-            })
-    
-            let sec_2 = document.getElementById("sec-2");
-            sec_2.addEventListener("click",()=>{
-                console.log("hi")
-                    addDoc(colref,{
-                        channelId,
-                        snippet,
-                        videoId,
-                        created_at:serverTimestamp(),
-                    })
-            
-                  
-                   })
+              
+               })
+
 
     }
     else{
-        signOutPage.style.display="none";
+        result
         signInPage.style.display="flex";
+        signOutPage.style.display="none";
         signout.style.display="none";
         signIn.style.display="flex";
-        // OutPage.style.display="none";
-        // Out.style.display="none";
-        
-        // InP.style.display="none";
+        OutPage.style.display="none";
+        InPage.style.display="flex";
+        Out.style.display="none";
+        In.style.display="flex";
+       
         
     }
-})
+
+
+
+});
+
+
+
+
+
+
+
+    
+ 
+ 
+
+
+
+
+   
+    
+    
+
+
+
+     
+    
+
+   
+
+
 
 
 

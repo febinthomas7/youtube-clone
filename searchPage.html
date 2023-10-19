@@ -124,7 +124,7 @@ hr {
             <a href="index.html"><i  id="back" class="fa fa-arrow-left"></i></a>
             
             <div>
-                <input type="text" placeholder="Search YouTube"  id="query" oninput="input()">
+                <input type="text" placeholder="Search YouTube"  autocomplete="off" onkeypress="clickPress(event)"  id="query" oninput="input()">
             </div>
             <div><i class="fa fa-microphone"></i></div>
         </header>
@@ -137,20 +137,36 @@ hr {
 
 
 
-const input = async ()=>{
-    let query = document.getElementById("query").value;
-    // let q = localStorage.getItem("query");
-
-
-    let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query}&key=${Api}`);
-    let data = await res.json();
-  
-    searchBar(data.items);
-
+        let query = document.getElementById("query");
+     let timer;
+    function clickPress(event) {
+    if (event.keyCode == 13) {
+        // do something
+        localStorage.setItem("query",JSON.stringify(query));
+    window.location.href="searchedVideo.html";
+    }
 }
 
+const debounce = (fun,delay)=>{
+
+     if(timer) clearTimeout(timer)
+     timer = setTimeout(fun,delay);
+    
+
+}
+const input = ()=>{
+
+
+    debounce(async()=>{
+    //   console.log(query.value)
+      let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query.value}&key=${Api}`);
+      let data = await res.json();
+      searchBar(data.items);
+    },500)
+
+}
 const searchBar = (data)=>{
-    console.log(data)
+    // console.log(data)
     let  container = document.getElementById("searchDiv");
     let query = document.getElementById("query").value;
 

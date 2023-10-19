@@ -15,6 +15,14 @@ body {
   #container{
     display: none;
   }
+  .query { text-indent: 22px;}
+   #fa-search { 
+    display: none;
+    position: absolute;
+    top: 13px;
+    left: 10px;
+    color: var(--secondary-color);
+  }
 
   #out>#signInPage{
     display: none;
@@ -52,7 +60,7 @@ body {
   grid-template-rows: auto;
   gap: 17px;
   row-gap: 36px;
-  width: 72%;
+
   margin-top: 40px;
   margin-inline: auto;
 }
@@ -281,7 +289,7 @@ color: var(--secondary-color);
     flex-direction: column;
     background-color: var(--fifth-color);
     justify-content: center;
-    width: 46%;
+    width: 100%;
     border-radius: 12px;
   }
   #searchDiv .Sbar{
@@ -413,7 +421,7 @@ color: var(--secondary-color);
     gap: 3px;
     align-items: baseline;
     flex-direction: row;
-    justify-content: space-between;
+    
 }
 #container div .lowerDiv  .loverdiv2 > button{
   background-color:var(--sixth-color);
@@ -846,9 +854,9 @@ a{
   }
   #navbar{
       display: flex;
-      left: 200px;
       align-items: center;
       justify-content:center ;
+      position: relative;
       
   }
   #close{
@@ -1936,7 +1944,7 @@ cursor:pointer;
 }
 #sec-2 {
   
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(4,1fr);
   
 }
   #button {
@@ -2140,7 +2148,7 @@ footer > div:nth-child(4){
 #sec-2 {
   
   grid-template-columns: repeat(2,1fr);
-  width: 82%;
+ 
   
 }
   
@@ -2653,9 +2661,7 @@ footer .d {
   cursor: pointer;
   
 }
-#out{
-  display: none;
-}
+
 
 .page-1{
   flex-direction: column;

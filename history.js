@@ -17,7 +17,7 @@ if(close){
 
 
 
-let Api = "AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM";
+let Api = "AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E";
 
 const search= async ()=>{
 
@@ -34,13 +34,25 @@ const search= async ()=>{
     
 }
 
-const input = async ()=>{
-    let query = document.getElementById("query").value;
-    let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query}&key=${Api}`);
-    let data = await res.json();
+let query = document.getElementById("query");
+let timer;
+
+const debounce = (fun,delay)=>{
+
+     if(timer) clearTimeout(timer)
+     timer = setTimeout(fun,delay);
     
-  
-    searchBar(data.items);
+
+}
+const input = ()=>{
+
+
+    debounce(async()=>{
+      console.log(query.value)
+      let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query.value}&key=${Api}`);
+      let data = await res.json();
+      searchBar(data.items);
+    },500)
 
 }
 

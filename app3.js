@@ -160,6 +160,7 @@ Out.addEventListener("click",signingOut);
         let lowerDiv = document.createElement("div");
         lowerDiv.className="lowerDiv";
         lowerDiv.style.height="25px";
+        lowerDiv.style.justifyContent="space-between";
         lowerDiv.style.width="auto";
         let loverdiv1 = document.createElement("div");
         loverdiv1.className="loverdiv1";

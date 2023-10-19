@@ -22,7 +22,7 @@ if(close){
 
 
 
-let Api = "AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM";
+let Api = "AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E";
 // AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM
 
 // AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E
@@ -217,10 +217,6 @@ const app = (data)=>{
 const search= async ()=>{
 
     let query = document.getElementById("query").value;
-    
-
-    let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${query}&key=${Api}`);
-    // let data = await res.json();
     localStorage.setItem("query",JSON.stringify(query));
     window.location.href="searchedVideo.html";
     // app(data.items);
@@ -229,37 +225,75 @@ const search= async ()=>{
     
 }
 
-const input = async ()=>{
-    let query = document.getElementById("query").value;
-    let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query}&key=${Api}`);
-    let data = await res.json();
+let query = document.getElementById("query");
+
+let timer;
+
+
+function clickPress(event) {
+    if (event.keyCode == 13) {
+        // do something
+        localStorage.setItem("query",JSON.stringify(query));
+    window.location.href="searchedVideo.html";
+    }
+}
+const debounce = (fun,delay)=>{
+
+     if(timer) clearTimeout(timer)
+     timer = setTimeout(fun,delay);
     
-  
-    searchBar(data.items);
 
 }
+const input = ()=>{
 
+
+    debounce(async()=>{
+      console.log(query.value)
+      let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query.value}&key=${Api}`);
+      let data = await res.json();
+
+      searchBar(data.items);
+    },500)
+    
+
+}
+// query.oninput = ()=>{
+
+  
+//     if(query.value == "" || query){
+//         query.classList.add("query");
+//     }
+// }
+
+
+ 
 const searchBar = (data)=>{
     let  container = document.getElementById("searchDiv");
     let query = document.getElementById("query").value;
+    let q = document.getElementById("query");
+    let fa_search = document.getElementById("fa-search");
+   
 
     if(query == ""){
 
         container.innerHTML = null;
         container.style.padding = "0px";
+        q.classList.remove("query");
+        fa_search.style.display="none";
         
 
     }else{
+        q.classList.add("query");
+        fa_search.style.display="flex";
+        
         data.forEach(({snippet,id:{videoId},snippet:{channelId}}) => {
 
-            // let img = snippet.thumbnails.high.url;
             let title = snippet.title;
     
             let div = document.createElement('div');
             div.className = "Sbar";
-           
-            // let image = document.createElement('img');
-            // image.src = img;
+
+            
     
             let p = document.createElement("p");
             p.innerText = title;
@@ -282,27 +316,35 @@ const searchBar = (data)=>{
     
             div.append(p);
             container.append(div);
-           
-    
+            
+            
+            // if(container.children.length >=6){
+
+            //     console.log("hhi")
+            //     let a = container.children;
+            //     let c = Array.from(a)
+            //     let b = c.slice(Math.max(c.length - 5, 0));
+            //     div.style.display="none"
+            //     console.log(b)
+        
+        
+            // }
     
             
         }
         )
-
+        
+   
+        
 
     }
+
+  
 
 
 }
 
 
-// const drop = document.getElementById("dropdown");
-
-// drop.addEventListener("click",()=>{
-    
-//     element.classList.toggle("drop");
-//     // drop.classList.toggle("drop")/
-// })
 
 
 const drop = ()=>{

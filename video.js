@@ -6,7 +6,7 @@ let data = JSON.parse(video);
 
 
 
-let Api = "AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM";
+let Api = "AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E";
 const avatar= async(data)=>{
     // console.log(data)
 
@@ -300,7 +300,7 @@ const desc = (data2)=>{
 
 
          subsData = subsData.split("");
-         console.log(subsData[0])
+        //  console.log(subsData[0])
          if(subsData.length == 3){
             subsData = subData;
            
@@ -486,38 +486,7 @@ const comm = (data)=>{
   
     data.forEach(({snippet:{topLevelComment},replies,snippet})=>{
 
-        // console.log(topLevelComment);
-        
-        // replies.filter( x => x !== undefined)
-        // console.log(replies)
-
-        // replies.forEach(({comments})=>{
-
-        //     console.log(comments)
-        // })
-        // let comment1 = document.getElementById("comment1");
-        // let c12 = document.createElement("div");
-        // c12.id="c1-2";
-        // c12.innerText="Comments";
-        // let span = document.createElement("span");
-        // span.innerText=" 6.5K"
-        // let c22 = document.createElement("div");
-        // c22.id="c2-2";
-
-        // let cDiv = document.createElement("div");
-        // let cImg = document.createElement("img");
-        // cImg.src="error.png";
-        // cDiv.append(cImg);
-
-        // let p = document.createElement("p");
-        // p.innerText="Congratulations on first face cam man 👍👍❤️❤️";
-
-        // let i = document.createElement("i");
-        // i.className="fa fa-caret-down";
-        // c12.append(span);
-        // c22.append(cDiv,p,i);
-
-        // comment1.append(c12,c22)
+       
         
         
         let user = topLevelComment.snippet.authorProfileImageUrl;
@@ -551,7 +520,7 @@ const comm = (data)=>{
         let today = new Date(mon);
         let month = today.toLocaleString('default', { month: 'short' });
 
-        strong.innerText= " "+ date +month;
+        strong.innerText= `(${date}${month})`;
         h5.append(strong);
 
         let d1 = document.createElement("div");
@@ -953,26 +922,45 @@ const search= async ()=>{
 
     
 }
-const input = async ()=>{
-    let query = document.getElementById("query").value;
-    let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query}&key=${Api}`);
-    let data = await res.json();
+let query = document.getElementById("query");
+let timer;
 
-    searchBar(data.items);
+const debounce = (fun,delay)=>{
+
+     if(timer) clearTimeout(timer)
+     timer = setTimeout(fun,delay);
+    
+
+}
+const input = ()=>{
+
+
+    debounce(async()=>{
+      console.log(query.value)
+      let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query.value}&key=${Api}`);
+      let data = await res.json();
+      searchBar(data.items);
+    },500)
 
 }
 
 const searchBar = (data)=>{
     let  container = document.getElementById("searchDiv");
     let query = document.getElementById("query").value;
+    let q = document.getElementById("query");
+    let fa_search = document.getElementById("fa-search");
 
     if(query == ""){
 
         container.innerHTML = null;
         container.style.padding = "0px";
+        q.classList.remove("query");
+        fa_search.style.display="none";
         
 
     }else{
+        q.classList.add("query");
+        fa_search.style.display="flex";
         data.forEach(({snippet,id:{videoId}}) => {
 
             // let img = snippet.thumbnails.high.url;
