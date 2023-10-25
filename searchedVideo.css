@@ -31,7 +31,7 @@ body {
     color: var(--secondary-color);
   }
 
-#out>#signInPage {
+#out .outdent >#signInPage {
   display: none;
 }
 #smallnav >#InPage {

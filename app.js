@@ -128,7 +128,7 @@ Out.addEventListener("click",signingOut);
         // console.log(users);
         })
 
-         let container = document.getElementById("container")
+         let container = document.getElementById("container");
          container.addEventListener("click",()=>{
             // console.log("hi")
                 addDoc(colref,{

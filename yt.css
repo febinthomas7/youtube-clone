@@ -24,7 +24,7 @@ body {
     color: var(--secondary-color);
   }
 
-  #out>#signInPage{
+  #out .outdent>#signInPage{
     display: none;
   }
  #out > #signOutPage{
@@ -2403,6 +2403,9 @@ footer > div:nth-child(4){
   font-weight: bold;
 }
 #outdent{
+  display: none;
+}
+#out{
   display: none;
 }
 #cap-2{

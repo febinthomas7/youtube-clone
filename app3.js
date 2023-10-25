@@ -120,121 +120,143 @@ Out.addEventListener("click",signingOut);
                users.push({...doc.data(),id:doc.id})
             })
             
-            users.forEach(({channelId,snippet,videoId,id})=>{
-                // location.reload();
-                let title = snippet.title;
-                let channelTitle = snippet.channelTitle;
-                // console.log(id, result.uid);
+            if(users==""){
                 let container =  document.getElementById("container");
-                let Main = document.getElementById("Main");
-                Main.style.marginTop="14px";
-                Main.style.marginBottom="72px";
+                container.style.display="flex";
+                
+                container.style.textAlign="center";
                 let div = document.createElement("div");
+                div.style.alignItems="center";
                 let img = document.createElement("img");
-                img.src = snippet.thumbnails.high.url;
-
-                let titleShort = title.slice(0,70);
-        
-        let name = document.createElement('p');
-        name.title=title;
-        if(title.length <= 70){
-            name.innerText = title;
-        }
-        else{
-            name.innerText = titleShort+"..."; 
-        }
-        
-
-        let Cname = document.createElement('span');
-        Cname.innerText = channelTitle;
-
-        let dots = document.createElement("i");
-        dots.className = "fa fa-ellipsis-v";
-
-        let tick = document.createElement("i");
-        tick.className ="fa fa-check-circle";
-
-        let middleDiv = document.createElement("div");
-        middleDiv.className="middleDiv";
-
-        let lowerDiv = document.createElement("div");
-        lowerDiv.className="lowerDiv";
-        lowerDiv.style.height="25px";
-        lowerDiv.style.justifyContent="space-between";
-        lowerDiv.style.width="auto";
-        let loverdiv1 = document.createElement("div");
-        loverdiv1.className="loverdiv1";
-        loverdiv1.style.height="100%";
-        loverdiv1.style.width="auto";
-        loverdiv1.style.display="flex";
-        loverdiv1.style.flexDirection="row";
-
-        let loverdiv2 = document.createElement("div");
-        loverdiv2.className="loverdiv2";
-        loverdiv2.style.height="100%";
-        loverdiv2.style.width="auto";
-        loverdiv2.style.display="flex";
-        loverdiv2.style.flexDirection="row";
-
-        let lowerBtn = document.createElement("button");
-        lowerBtn.innerText="Remove";
-        lowerBtn.style.outline="none";
-        lowerBtn.style.border="none";
-        lowerBtn.style.borderRadius="4px";
-        lowerBtn.style.padding="5px";
-        lowerBtn.title="remove this video from history";
-        lowerBtn.style.cursor="pointer";
-
-
-
-
-        loverdiv2.append(lowerBtn)
-        middleDiv.append(name,dots);
-        loverdiv1.append(Cname,tick)
-        lowerDiv.append(loverdiv1,loverdiv2);
-                div.append(img,middleDiv,lowerDiv);
+                img.src="history.png";
+                img.style.width="175px";
+                img.style.borderRadius="50%";
+                img.style.border ="none";
+                let p = document.createElement("p");
+                p.style.width = "100%";
+                p.innerText="no videos watched..";
+                div.append(img,p);
                 container.append(div);
-     
-     
-                
-                lowerBtn.addEventListener("click",()=>{
-                    console.log(id, result.uid);
 
-                    const docref = doc(db, result.uid, id)
-
-                    deleteDoc(docref)
-                    .then(()=>{
-                      
-                        let  load = document.createElement("span");
-                        let head = document.getElementById("header");
-
-                        load.className="loader";
-
-
-      
-                        setTimeout(function(){ head.append(load) }, 0);
-                        setTimeout(function(){ load.style.display ="none" }, 1000);
-
-                        location.reload();
-                    })
-
-                    
-
-                })
-                let data={
-                    channelId,
-                    snippet,
-                    videoId,
-                }
-
-                img.addEventListener("click",()=>{
-                    localStorage.setItem("video",JSON.stringify(data));
-                    window.location.href="video.html";
-                })
-     
-                
+            }else{
+                users.forEach(({channelId,snippet,videoId,id})=>{
+                    // location.reload();
+                    let title = snippet.title;
+                    let channelTitle = snippet.channelTitle;
+                    // console.log(id, result.uid);
+                    let container =  document.getElementById("container");
+                    let Main = document.getElementById("Main");
+                    Main.style.marginTop="14px";
+                    Main.style.marginBottom="72px";
+                    let div = document.createElement("div");
+                    let img = document.createElement("img");
+                    img.src = snippet.thumbnails.high.url;
     
-            })
+                    let titleShort = title.slice(0,70);
+            
+            let name = document.createElement('p');
+            name.title=title;
+            if(title.length <= 70){
+                name.innerText = title;
+            }
+            else{
+                name.innerText = titleShort+"..."; 
+            }
+            
+    
+            let Cname = document.createElement('span');
+            Cname.innerText = channelTitle;
+    
+            let dots = document.createElement("i");
+            dots.className = "fa fa-ellipsis-v";
+    
+            let tick = document.createElement("i");
+            tick.className ="fa fa-check-circle";
+    
+            let middleDiv = document.createElement("div");
+            middleDiv.className="middleDiv";
+    
+            let lowerDiv = document.createElement("div");
+            lowerDiv.className="lowerDiv";
+            lowerDiv.style.height="25px";
+            lowerDiv.style.justifyContent="space-between";
+            lowerDiv.style.width="auto";
+            let loverdiv1 = document.createElement("div");
+            loverdiv1.className="loverdiv1";
+            loverdiv1.style.height="100%";
+            loverdiv1.style.width="auto";
+            loverdiv1.style.display="flex";
+            loverdiv1.style.flexDirection="row";
+    
+            let loverdiv2 = document.createElement("div");
+            loverdiv2.className="loverdiv2";
+            loverdiv2.style.height="100%";
+            loverdiv2.style.width="auto";
+            loverdiv2.style.display="flex";
+            loverdiv2.style.flexDirection="row";
+    
+            let lowerBtn = document.createElement("button");
+            lowerBtn.innerText="Remove";
+            lowerBtn.style.outline="none";
+            lowerBtn.style.border="none";
+            lowerBtn.style.borderRadius="4px";
+            lowerBtn.style.padding="5px";
+            lowerBtn.title="remove this video from history";
+            lowerBtn.style.cursor="pointer";
+    
+    
+    
+    
+            loverdiv2.append(lowerBtn)
+            middleDiv.append(name,dots);
+            loverdiv1.append(Cname,tick)
+            lowerDiv.append(loverdiv1,loverdiv2);
+                    div.append(img,middleDiv,lowerDiv);
+                    container.append(div);
+         
+         
+                    
+                    lowerBtn.addEventListener("click",()=>{
+                        console.log(id, result.uid);
+    
+                        const docref = doc(db, result.uid, id)
+    
+                        deleteDoc(docref)
+                        .then(()=>{
+                          
+                            let  load = document.createElement("span");
+                            let head = document.getElementById("header");
+    
+                            load.className="loader";
+    
+    
+          
+                            setTimeout(function(){ head.append(load) }, 0);
+                            setTimeout(function(){ load.style.display ="none" }, 1000);
+    
+                            location.reload();
+                        })
+    
+                        
+    
+                    })
+                    let data={
+                        channelId,
+                        snippet,
+                        videoId,
+                    }
+    
+                    img.addEventListener("click",()=>{
+                        localStorage.setItem("video",JSON.stringify(data));
+                        window.location.href="video.html";
+                    })
+         
+                    
+        
+                })
+
+            }
+          
         
             })
  

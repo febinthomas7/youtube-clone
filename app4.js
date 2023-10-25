@@ -79,8 +79,8 @@ signIn.addEventListener("click",signin);
 signInPage.addEventListener("click",signin);
 
 signout.addEventListener("click",signingOut);
-// In.addEventListener("click",signin);
-// Out.addEventListener("click",signingOut);
+In.addEventListener("click",signin);
+Out.addEventListener("click",signingOut);
 
 onAuthStateChanged(auth,(result)=>{
 
@@ -90,12 +90,15 @@ onAuthStateChanged(auth,(result)=>{
         signOutPage.style.display="flex";
         signIn.style.display="none";
         signout.style.display="flex";
-        out.style.display="flex";
-        // InPage.style.display="none";
-        // In.style.display="none";
+        // out.style.display="flex";
+        InPage.style.display="none";
+        OutPage.style.display="flex";
+        In.style.display="none";
         // OutP.style.display="none";
         
         profile.src = result.photoURL;
+        photo.src = result.photoURL;
+
       
 
         let snipp = localStorage.getItem("video");
@@ -140,8 +143,10 @@ onAuthStateChanged(auth,(result)=>{
         signInPage.style.display="flex";
         signout.style.display="none";
         signIn.style.display="flex";
-        // OutPage.style.display="none";
-        // Out.style.display="none";
+        OutPage.style.display="none";
+        InPage.style.display="flex";
+
+        Out.style.display="none";
         
         // InP.style.display="none";
         

@@ -290,7 +290,12 @@ const drop = ()=>{
 
 
 }
+const dr = ()=>{
+    const element = document.getElementById("dropd");
+    element.classList.toggle("drop");
 
+
+}
 
 let dark = document.getElementById("dark");
 const light = document.getElementById("light");
@@ -324,6 +329,44 @@ light.onclick = ()=>{
     document.body.classList.remove("dark-theme");
     if(!document.body.classList.contains("dark-theme")){
         return ( localStorage.setItem("mode","light"),c )
+           
+        
+    }
+    
+
+} 
+let drk = document.getElementById("drk");
+const lit = document.getElementById("lit");
+let themee = localStorage.getItem("mode");
+
+if(themee && themee === "dark"){
+    document.body.classList.add("dark-theme");
+
+}
+else{
+    document.body.classList.remove("dark-theme");
+}
+drk.onclick = ()=>{
+  
+
+
+    document.body.classList.add("dark-theme");
+     if(document.body.classList.contains("dark-theme")){
+        return localStorage.setItem("mode","dark")
+           
+        
+    }
+
+ 
+}
+
+
+lit.onclick = ()=>{
+
+
+    document.body.classList.remove("dark-theme");
+    if(!document.body.classList.contains("dark-theme")){
+        return ( localStorage.setItem("mode","light") )
            
         
     }
