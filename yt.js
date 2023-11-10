@@ -217,8 +217,12 @@ const app = (data)=>{
 const search= async ()=>{
 
     let query = document.getElementById("query").value;
-    localStorage.setItem("query",JSON.stringify(query));
-    window.location.href="searchedVideo.html";
+
+   
+        localStorage.setItem("query",JSON.stringify(query));
+        window.location.href="searchedVideo.html";
+    
+   
     // app(data.items);
 
 
@@ -248,22 +252,19 @@ const input = ()=>{
 
 
     debounce(async()=>{
-      console.log(query.value)
+    //   console.log(query.value)
       let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query.value}&key=${Api}`);
       let data = await res.json();
-
-      searchBar(data.items);
+      
+    
+        searchBar(data.items);
+ 
+      
     },500)
     
 
 }
-// query.oninput = ()=>{
 
-  
-//     if(query.value == "" || query){
-//         query.classList.add("query");
-//     }
-// }
 
 
  

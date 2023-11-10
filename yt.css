@@ -1443,7 +1443,7 @@ a{
 
 #video .caption{
   display: flex;
-  
+  width: 100%;
   margin-top: 15px;
   align-items: center;
 }
@@ -1611,6 +1611,9 @@ sup {
 }
 #video .caption div{
   margin-left: 10px;
+}
+#video .caption div:nth-child(3){
+  margin-left: calc(33% - 53px);
 }
 
 #video .caption img{
@@ -2688,9 +2691,11 @@ footer .d {
   margin-right: 0px;
 }
 #video .caption button {
-  margin-left: 60px;
+  
   padding: 8px 11px;
 }
+
+
 #video .caption .button1{
   margin-left: 70px;
   padding: 8px 11px;
