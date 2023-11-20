@@ -1612,9 +1612,9 @@ sup {
 #video .caption div{
   margin-left: 10px;
 }
-#video .caption div:nth-child(3){
+/* #video .caption div:nth-child(3){
   margin-left: calc(33% - 53px);
-}
+} */
 
 #video .caption img{
   padding: 3px;
@@ -1874,6 +1874,7 @@ cursor:pointer;
   display: flex;
   align-items: center;
   padding: 2px;
+  font-family: sans-serif;
   color: var(--secondary-color);
 }
 
@@ -1970,6 +1971,7 @@ cursor:pointer;
 }
   #sidebar >.side h5 {
     font-size: 15px;
+    font-family: sans-serif;
     width: 122px;
     line-height: 20px;
     margin-bottom: 6px;
@@ -2233,6 +2235,10 @@ footer > div:nth-child(4){
 }
 
 @media(max-width:490px){
+
+  #video .caption div:nth-child(3) {
+    margin-left: calc(33% - 53px);
+}
   .middleDiv i {
     visibility:visible !important;
 }
