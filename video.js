@@ -876,13 +876,36 @@ let theme = localStorage.getItem("mode");
 
 if(theme && theme === "dark"){
     document.body.classList.add("dark-theme");
+    let header = document.getElementById("header");
+
+  window.onscroll = scroll;
+    function scroll() {
+        if (window.pageYOffset <= 10){
+          header.style.backgroundColor="transparent";
+
+        }
+        if(window.pageYOffset >= 10)
+            header.style.backgroundColor="black";
+    }
 
 }
-else{
+if(theme && theme === "light"){
     document.body.classList.remove("dark-theme");
+    let header = document.getElementById("header");
+    window.onscroll = scroll;
+    function scroll() {
+        if (window.pageYOffset <= 10){
+          header.style.backgroundColor="transparent";
+
+        }
+        if(window.pageYOffset >= 10)
+            header.style.backgroundColor="white";
+    }
+ 
 }
 dark.onclick = ()=>{
   
+    window.location.reload();
 
 
     document.body.classList.add("dark-theme");
@@ -893,15 +916,15 @@ dark.onclick = ()=>{
     }
 
  
-}
+}   
 
 
 light.onclick = ()=>{
 
-
+    window.location.reload();
     document.body.classList.remove("dark-theme");
     if(!document.body.classList.contains("dark-theme")){
-        return ( localStorage.setItem("mode","light"),c )
+        return ( localStorage.setItem("mode","light") )
            
         
     }

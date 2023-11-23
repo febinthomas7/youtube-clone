@@ -12,6 +12,41 @@ body {
      
   
   }
+  :root{
+    --primary-color:white;
+    --secondary-color:black;
+    --third-color:rgb(230 230 230);
+    --fourth-color:gray;
+    --fifth-color:#f9f5f5;
+    --sixth-color:#dfdede;
+    --imageBorder-color:transparent;
+    --icon-color:black;
+    --signIn-color:#def1ff;
+    --signIn-border-color:#e2e2e2;
+    --subscribe-btn:#444444;
+    --shadow:0 0 0px 0px #5668561f, 0 0 0px 0px #4e594e3b, 0 0 0px 0px #8b9d8b3b;
+    --numbers:rgb(70 66 66);
+    --sidenav-footer:white;
+    --video-btn:#f9f5f5;
+    
+    
+  }
+  .dark-theme{
+    --primary-color:black;
+    --secondary-color:white;
+    --fifth-color:#353434;
+    --sixth-color:#4d4b4b;
+    --imageBorder-color:#3a3a3a;
+    --icon-color:red;
+    --signIn-color:#1d578ad5;
+    --signIn-border-color:#383838;
+    --subscribe-btn:#c7c7c7;
+    --shadow: -6px -67px 114px 195px #00ac001f, 0 0 0px 84px #0a4b0a00, 0 89px 69px 104px #238a231a;
+    --numbers:#b2afa;
+    --sidenav-footer:#1c1a1a;
+    --video-btn:#3534348c;
+
+  }
   #container{
     display: none;
   }
@@ -248,39 +283,7 @@ color: var(--secondary-color);
   margin-top: 12px;
 }
 
-  :root{
-    --primary-color:white;
-    --secondary-color:black;
-    --third-color:rgb(230 230 230);
-    --fourth-color:gray;
-    --fifth-color:#f9f5f5;
-    --sixth-color:#dfdede;
-    --imageBorder-color:transparent;
-    --icon-color:black;
-    --signIn-color:#def1ff;
-    --signIn-border-color:#e2e2e2;
-    --subscribe-btn:#444444;
-    --shadow:0 0 0px 0px #5668561f, 0 0 0px 0px #4e594e3b, 0 0 0px 0px #8b9d8b3b;
-    --numbers:rgb(70 66 66);
-    --sidenav-footer:white;
-    
-    
-  }
-  .dark-theme{
-    --primary-color:black;
-    --secondary-color:white;
-    --fifth-color:#353434;
-    --sixth-color:#4d4b4b;
-    --imageBorder-color:#3a3a3a;
-    --icon-color:red;
-    --signIn-color:#1d578ad5;
-    --signIn-border-color:#383838;
-    --subscribe-btn:#c7c7c7;
-    --shadow: -6px -67px 114px 195px #00ac001f, 0 0 0px 84px #0a4b0a00, 0 89px 69px 104px #238a231a;
-    --numbers:#b2afa;
-    --sidenav-footer:#1c1a1a;
-
-  }
+  
  
   #searchDiv{
     position: absolute;
@@ -955,7 +958,7 @@ a{
     padding: 9px 20px;
     margin-top: 0px;
     margin-right: 10px;
-    background: var(--fifth-color);
+    background: var(--video-btn);
     font-size: 17px;
     border: 0.1px solid var(--signIn-border-color);
     cursor: pointer;
@@ -1022,7 +1025,7 @@ a{
   }
   #navbar .mick {
    border-radius: 50%;
-   background-color: var(--fifth-color);
+   background-color: var(--video-btn);
   
    
   }
@@ -1533,7 +1536,7 @@ a{
 #video .caption-1 .a4 div{
   
   display: flex;
-  background-color:var(--fifth-color);
+  background-color:var(--video-btn);
   border-radius: 50px;
   align-items: center;
   cursor: pointer;
@@ -1552,18 +1555,18 @@ a{
   display: flex;
 
   margin-right: 10px;
-  background-color:var(--fifth-color);
+  background-color:var(--video-btn);
   border-radius: 50px;
   color: var(--secondary-color);
 }
 #video .caption-1 .a22 {
-  background-color:var(--fifth-color);
+  background-color:var(--video-btn);
   color: var(--secondary-color);
   border-radius: 50px;
   
 }
 #video .caption-1 .a1{
-  background-color: var(--fifth-color);
+  background-color: var(--video-btn);
   border-radius: 50px;
   color: var(--secondary-color);
   
@@ -1729,7 +1732,7 @@ cursor:pointer;
 
 }
 #a55{
-  background-color:var(--fifth-color);
+  background-color:var(--video-btn);
   padding: 15px 10px 15px 10px;
   border-radius: 10px;
   margin-top: 15px;
