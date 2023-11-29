@@ -846,6 +846,7 @@ a{
       align-items: center;
       justify-content: space-between;
       width: 100%;
+      transition: 0.2s ease;
      background-color:var(--primary-color);
      padding: 5px 20px 5px 20px;
       position:fixed;
@@ -2173,7 +2174,7 @@ footer > div:nth-child(4){
   }
 
   #a55 {
-    background-color: var(--fifth-color);
+    background-color: var(--video-btn);
     padding: 15px 10px 15px 10px;
     border-radius: 10px;
     margin-top: 15px;
@@ -2801,7 +2802,7 @@ footer .d {
 #video .caption-1 .a44 div,
 #video .caption-1 .a45 div
  {
-  background-color: var(--fifth-color);
+  background-color: var(--video-btn);
   border-radius: 50px;
   color: var(--secondary-color);
   display: flex;
@@ -2968,7 +2969,7 @@ flex-direction: column;
   
 }
 #c-33 input {
-  width: 292px;
+  width: 100%;
   background-color: var(--primary-color);
 }
 #c-3 img {
@@ -3020,7 +3021,7 @@ flex-direction: column;
 #comment1{
   padding: 10px;
   border-radius: 10px;
-  background-color: var(--fifth-color);
+  background-color: var(--video-btn);
   margin: 10px;
   color: var(--secondary-color);
 }

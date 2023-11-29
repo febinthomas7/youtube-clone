@@ -57,7 +57,7 @@ const mostPopular = async ()=>{
 
 
     try{
-        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&regionCode=IN&key=${Api}`);
+        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&chart=mostPopular&regionCode=IN&key=${Api}`);
     // let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=100&chart=mostPopular&regionCode=IN&key=${Api}`);
     let data = await res.json();
     // console.log(data)
