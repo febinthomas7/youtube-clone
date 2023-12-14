@@ -22,10 +22,10 @@ if(close){
 
 
 
-let Api = "AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E";
+let Api = "AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM";
 // AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM
 
-// AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E
+// 
 
 
 // const most = async ()=>{
@@ -57,11 +57,33 @@ const mostPopular = async ()=>{
 
 
     try{
-        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&chart=mostPopular&regionCode=IN&key=${Api}`);
-    // let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=100&chart=mostPopular&regionCode=IN&key=${Api}`);
-    let data = await res.json();
-    // console.log(data)
-    app(data.items)
+        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&type=video&order=viewCount&chart=mostPopular&regionCode=IN&key=${Api}`);
+        let data = await res.json();
+        // console.log(data);
+
+        let tokendata= data.nextPageToken;
+        localStorage.setItem("token",JSON.stringify(tokendata));
+
+        let tget = localStorage.getItem("token");
+        let token = JSON.parse(tget);
+
+        app(data.items);
+
+        //infinite scroll
+        window.addEventListener('scroll',async()=>{
+        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&type=video&order=viewCount&pageToken=${token}&chart=mostPopular&regionCode=IN&key=${Api}`);
+        let data = await res.json();
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const scrolled = window.scrollY;
+    
+        
+        
+        if(Math.ceil(scrolled)=== scrollable){
+            let tokendata= data.nextPageToken;
+            localStorage.setItem("token",JSON.stringify(tokendata));
+            app(data.items);
+        }
+       })
 
     }
     catch(e){
@@ -114,10 +136,26 @@ const mostPopular = async ()=>{
 } 
 mostPopular();
 
+// const nextpage = async(token)=>{
+
+//     let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&type=video&order=viewCount&pageToken=${token}&chart=mostPopular&regionCode=IN&key=${Api}`);
+//     // let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=100&chart=mostPopular&regionCode=IN&key=${Api}`);
+//     let data = await res.json();
+//     // console.log(data);
+   
+//    window.addEventListener('scroll',()=>{
+//     const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+//     const scrolled = window.scrollY;
+
+//     if(Math.ceil(scrolled)=== scrollable){
+//         app(...data.items);
+//     }
+//    })
+// }
 
 const app = (data)=>{
     let container = document.getElementById("container");
-    container.innerHTML = null;
+    // container.innerHTML = null;
     // console.log(data)
     data.forEach(({snippet,id:{videoId},snippet:{channelId}}) => {
        
@@ -255,7 +293,7 @@ const input = ()=>{
     //   console.log(query.value)
       let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query.value}&key=${Api}`);
       let data = await res.json();
-      
+      console.log(data);
     
         searchBar(data.items);
  

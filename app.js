@@ -49,8 +49,8 @@ let signin = async()=>{
 
     try{
 
-        const data = await signInWithPopup(auth, provider);
-        let result = data.user;
+         await signInWithPopup(auth, provider);
+        // let result = data.user;
        
 
     }
@@ -144,7 +144,7 @@ Out.addEventListener("click",signingOut);
 
     }
     else{
-        result
+        // result
         signInPage.style.display="flex";
         signOutPage.style.display="none";
         signout.style.display="none";
