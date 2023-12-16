@@ -225,7 +225,7 @@ const input = async ()=>{
     title.innerText= qry+"- YouTube";
 
 
-    let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query}&key=${Api}`);
+    let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${query}&key=${Api}`);
     let data = await res.json();
   
     searchBar(data.items);
@@ -234,6 +234,7 @@ const input = async ()=>{
 
 const searchBar = (data)=>{
     let  container = document.getElementById("searchDiv");
+    container.innerHTML = null;
     let query = document.getElementById("query").value;
     let q = document.getElementById("query");
     let fa_search = document.getElementById("fa-search");

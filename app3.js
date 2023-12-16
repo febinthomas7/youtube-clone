@@ -217,7 +217,7 @@ Out.addEventListener("click",signingOut);
          
                     
                     lowerBtn.addEventListener("click",()=>{
-                        console.log(id, result.uid);
+                        // console.log(id, result.uid);
     
                         const docref = doc(db, result.uid, id)
     

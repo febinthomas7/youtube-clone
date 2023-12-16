@@ -49,7 +49,7 @@ const input = ()=>{
 
     debounce(async()=>{
       console.log(query.value)
-      let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query.value}&key=${Api}`);
+      let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${query.value}&key=${Api}`);
       let data = await res.json();
       searchBar(data.items);
     },500)
@@ -58,6 +58,7 @@ const input = ()=>{
 
 const searchBar = (data)=>{
     let  container = document.getElementById("searchDiv");
+    container.innerHTML = null;
     let query = document.getElementById("query").value;
 
     if(query == ""){

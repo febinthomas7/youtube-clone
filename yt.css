@@ -1,5 +1,5 @@
 body {
-    font-family: "Lato", sans-serif;
+    font-family: "Roboto", sans-serif;
     background: var(--primary-color);
     background-repeat:no-repeat;
     
@@ -194,7 +194,7 @@ color: var(--secondary-color);
   width: 0%;
   height: 100%;
   border-radius: 30px;
-  animation: moving 1s ease-in-out infinite;
+  animation: moving 1s ease-in-out ;
   ;
 }
 
@@ -619,13 +619,13 @@ a{
     align-items: center;
 }
   
-  .sidenav1 a {
-    padding: 10px 0 10px 30px;
+.sidenav1 a {
+  padding: 15px 0 17px 24px;
     text-decoration: none;
-    font-size: 14px;
-    color: var(--secondary-color);  
-    align-items: center;
-  }
+  font-size: 14px;
+  color: var(--secondary-color);
+  align-items: center;
+}
   .sidenav1 .a {
     padding: 7px 0 0px 30px;
     text-decoration: none;
@@ -648,7 +648,7 @@ a{
     color: var(--secondary-color);
   }
   .sidenav1 .icons {
-    padding: 2.5px 10px 2.5px 14px;
+    padding: 2.5px 10px 2.5px 22px;
     text-decoration: none;
     font-size: 16px;
     display: flex;

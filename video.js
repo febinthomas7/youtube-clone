@@ -6,11 +6,11 @@ let data = JSON.parse(video);
 
 
 
-let Api = "AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E";
+let Api;
 const avatar= async(data)=>{
     // console.log(data)
 
-    let res = await fetch(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${data.channelId}&maxResults=25&key=${Api}`);
+    let res = await fetch(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${data.channelId}&maxResults=100&key=${Api}`);
     
     let d= await res.json();
    
@@ -676,26 +676,39 @@ const mostPopular = async ()=>{
         let q = localStorage.getItem("query");
         let query = JSON.parse(q);
         let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=100&q=${query}%20munde&key=${Api}`);
-    // let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=100&chart=mostPopular&regionCode=IN&key=${Api}`);
-    let data = await res.json();
+        let data = await res.json();
     // console.log(data)
     append(data.items)
 
     }
     catch(e){
 
+        let  load = document.createElement("span");
+        let head = document.getElementById("header");
+        console.log(e)
+
+        load.className="loader";
+
+
+      
+       setTimeout(function(){ head.append(load) }, 0)
+    // setTimeout(function(){ load.style.display ="none" }, 1000)
+    
         let container = document.getElementById("video");
         let play = document.getElementById("play");
         let a55 = document.getElementById("a55");
         let sidebar = document.getElementById("sidebar");
         let VTitle = document.getElementById("Vtitle");
         let caps = document.getElementById("caps");
+        let comment = document.getElementById("comment");
+
 
         
 
 
         VTitle.style.display="none";
         caps.style.display="none";
+        comment.style.display="none";
         sidebar.style.display = "none";
         play.style.display = "none";
         container.style.width="100%";
@@ -743,101 +756,119 @@ mostPopular();
 
 
 const append = async(data1)=>{
+
+    try{
+        let side = document.getElementById("side");
+        data1.forEach(({snippet,id:{videoId},snippet:{channelId}}) => {
     
-    let side = document.getElementById("side");
-    data1.forEach(({snippet,id:{videoId},snippet:{channelId}}) => {
-
-        let img = snippet.thumbnails.high.url;
-        let channelTitle = snippet.channelTitle;
-        let title = snippet.title;
-
-        let div = document.createElement('div');
-        let div1 = document.createElement("section");
-        let image = document.createElement('img');
-        let div2 = document.createElement("div");
-           div2.className="div2";
-
-           let div3 = document.createElement("div");
-           div3.className="div3";
-
-        image.src = img;
-        
-        let titleShort = title.slice(0,55);
-        let name = document.createElement('h5');
-        name.title=title;
-        if(title.length <= 55){
-            name.innerText = title ;
-        }else{
-            name.innerText = titleShort +"..." ;
-        }
-        
-
-        let Cname = document.createElement('p');
-        Cname.innerText = channelTitle +" ";
-
-        let Cicon = document.createElement("i");
-        Cicon.className ="fa fa-check-circle";
-
-        // let dot = document.createElement("i");
-        
-        // dot.className = "fa fa-ellipsis-v";
-        // dot.className = "dot";
-
-        let dot1 = document.createElement("i");
-        dot1.className = "fa fa-ellipsis-v";
-        dot1.className="dot1";
-
-
-        Cname.append(Cicon)
-
-        if(channelTitle == title){
-            let data={
-                snippet,
-                videoId,
-                channelId,
+            let img = snippet.thumbnails.high.url;
+            let channelTitle = snippet.channelTitle;
+            let title = snippet.title;
+    
+            let div = document.createElement('div');
+            let div1 = document.createElement("section");
+            let image = document.createElement('img');
+            let div2 = document.createElement("div");
+               div2.className="div2";
+    
+               let div3 = document.createElement("div");
+               div3.className="div3";
+    
+            image.src = img;
+            
+            let titleShort = title.slice(0,55);
+            let name = document.createElement('h5');
+            name.title=title;
+            if(title.length <= 55){
+                name.innerText = title ;
+            }else{
+                name.innerText = titleShort +"..." ;
             }
-            div1.addEventListener("click",()=>{
-                localStorage.setItem("video",JSON.stringify(data));
-                window.location.href="channel.html";
-            })
-        }else{
-            let data={
-                snippet,
-                videoId,
-                channelId,
+            
+    
+            let Cname = document.createElement('p');
+            Cname.innerText = channelTitle +" ";
+    
+            let Cicon = document.createElement("i");
+            Cicon.className ="fa fa-check-circle";
+    
+            // let dot = document.createElement("i");
+            
+            // dot.className = "fa fa-ellipsis-v";
+            // dot.className = "dot";
+    
+            let dot1 = document.createElement("i");
+            dot1.className = "fa fa-ellipsis-v";
+            dot1.className="dot1";
+    
+    
+            Cname.append(Cicon)
+    
+            if(channelTitle == title){
+                let data={
+                    snippet,
+                    videoId,
+                    channelId,
+                }
+                div1.addEventListener("click",()=>{
+                    localStorage.setItem("video",JSON.stringify(data));
+                    window.location.href="channel.html";
+                })
+            }else{
+                let data={
+                    snippet,
+                    videoId,
+                    channelId,
+                }
+                div1.addEventListener("click",()=>{
+                    localStorage.setItem("video",JSON.stringify(data));
+                    setTimeout(()=>{
+                        window.location.href="video.html";
+                    },1000)
+                   
+                })
+    
             }
-            div1.addEventListener("click",()=>{
-                localStorage.setItem("video",JSON.stringify(data));
-                setTimeout(()=>{
-                    window.location.href="video.html";
-                },1000)
-               
-            })
-
+            
+    
+          
+    
+    
+    
+            div.append(div2,div3);
+            div2.append(name,Cname);
+            div3.append(dot1)
+            div1.append(image,div)
+            side.append(div1);
+            
+    
+    
+            
         }
+       
+       
         
-
-      
-
-
-
-        div.append(div2,div3);
-        div2.append(name,Cname);
-        div3.append(dot1)
-        div1.append(image,div)
-        side.append(div1);
         
-
-
         
+        
+        );
     }
-   
-   
+    catch(e){
+        
+        let play = document.getElementById("play");
+        let comment = document.getElementById("comment");
+        let a55 = document.getElementById("a55");
+
+
+        play.style.display = "none";
+        comment.style.display="none";
+        a55.style.padding = "0px";
+
+        
+
+    }
     
     
-    
-    
-    );
 
 
  
@@ -845,19 +876,28 @@ const append = async(data1)=>{
 }
 
 const most = async (data)=>{
-
-    let {snippet:{channelId}} =data;
-    let res = await fetch(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${channelId}&maxResults=25&key=${Api}`);
+    try{
+        let {snippet:{channelId}} =data;
+        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${channelId}&maxResults=25&key=${Api}`);
+        
+        let d= await res.json();
+        // console.log(d)
     
-    let d= await res.json();
-    // console.log(d)
+        d.items.forEach(({snippet,statistics})=>{
+            localStorage.setItem("avatar",JSON.stringify(snippet.thumbnails.default.url));
+             localStorage.setItem("subscriber",JSON.stringify(statistics.subscriberCount));
+            //  console.log(snippet)
+    
+        })
 
-    d.items.forEach(({snippet,statistics})=>{
-        localStorage.setItem("avatar",JSON.stringify(snippet.thumbnails.default.url));
-         localStorage.setItem("subscriber",JSON.stringify(statistics.subscriberCount));
-        //  console.log(snippet)
 
-    })
+    }
+    catch(e){
+
+        console(e);
+    }
+
+   
     
    
 } 
@@ -873,10 +913,14 @@ const drop = ()=>{
 let dark = document.getElementById("dark");
 const light = document.getElementById("light");
 let theme = localStorage.getItem("mode");
+let hexcolor = `${Math.random().toString(16).slice(2,8).padEnd(6,0)}`;
+// console.log(hexcolor)
 
 if(theme && theme === "dark"){
     document.body.classList.add("dark-theme");
     let header = document.getElementById("header");
+    let play = document.getElementById("play");
+    play.style.boxShadow=`-6px -67px 114px 195px #${hexcolor}20, 0 0 0px 84px #${hexcolor}00, 0 89px 69px 104px #${hexcolor}10`
 
   window.onscroll = scroll;
     function scroll() {
@@ -957,18 +1001,28 @@ const debounce = (fun,delay)=>{
 }
 const input = ()=>{
 
+    try{
+        debounce(async()=>{
+            console.log(query.value)
+            let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${query.value}&key=${Api}`);
+            let data = await res.json();
+            searchBar(data.items);
+          },500)
 
-    debounce(async()=>{
-      console.log(query.value)
-      let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query.value}&key=${Api}`);
-      let data = await res.json();
-      searchBar(data.items);
-    },500)
+    }
+    catch(e){
+
+        console.log(e);
+    }
+
+
+    
 
 }
 
 const searchBar = (data)=>{
     let  container = document.getElementById("searchDiv");
+    container.innerHTML = null;
     let query = document.getElementById("query").value;
     let q = document.getElementById("query");
     let fa_search = document.getElementById("fa-search");

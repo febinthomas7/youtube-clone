@@ -402,7 +402,7 @@ const input = ()=>{
 
     debounce(async()=>{
       console.log(query.value)
-      let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query.value}&key=${Api}`);
+      let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${query.value}&key=${Api}`);
       let data = await res.json();
       searchBar(data.items);
     },500)
@@ -411,6 +411,7 @@ const input = ()=>{
 
 const searchBar = (data)=>{
     let  container = document.getElementById("searchDiv");
+    container.innerHTML = null;
     let query = document.getElementById("query").value;
     let q = document.getElementById("query");
     let fa_search = document.getElementById("fa-search");
@@ -470,10 +471,6 @@ const searchBar = (data)=>{
 
 
 }
-// `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=100&chart=mostPopular&regionCode=IN&key=${Api}`
-// "No filter selected. Expected one of: id, forUsername, mine, categoryId, managedByMe, mySubscribers"
-// 'https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=UC_x5XG1OV2P6uZZ5FSM9Ttw&maxResults=25&key=${Api}'
 
-// 'https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=Ks-_Mh1QhMc&maxResults=25&key=[YOUR_API_KEY]' 
 
 

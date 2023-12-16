@@ -22,22 +22,11 @@ if(close){
 
 
 
-let Api = "AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM";
+let Api = "AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E";
 // AIzaSyCOhiwQudnvkd1xx0YqQlAIdwoBFB1_rWM
 
-// 
+//AIzaSyCwA7cgkxzyQsOxey87arjhmPnPQ_xtwTU 
 
-
-// const most = async ()=>{
-
-//     let res = await fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&maxResults=25&id=Ks-_Mh1QhMc&key=${Api}`);
-//     let data = await res.json();
-
- 
-//     console.log(data.items)
-    
-// } 
-// most();
 
 let btn = document.querySelectorAll(".btn");
 
@@ -45,7 +34,7 @@ btn.forEach((bt)=>{
     bt.addEventListener("click",async(e)=>{
         // console.log(e.target.innerHTML)
         let val = e.target.innerHTML;
-        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${val}&key=${Api}`);
+        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=100&q=${val}&key=${Api}`);
         let data = await res.json();
 
         app(data.items);
@@ -57,45 +46,54 @@ const mostPopular = async ()=>{
 
 
     try{
-        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&type=video&order=viewCount&chart=mostPopular&regionCode=IN&key=${Api}`);
+        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=100&type=video&order=viewCount&chart=mostPopular&regionCode=IN&key=${Api}`);
         let data = await res.json();
         // console.log(data);
 
         let tokendata= data.nextPageToken;
+        // console.log(tokendata)
         localStorage.setItem("token",JSON.stringify(tokendata));
-
         let tget = localStorage.getItem("token");
         let token = JSON.parse(tget);
+        
 
         app(data.items);
-
+       
         //infinite scroll
         window.addEventListener('scroll',async()=>{
-        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&type=video&order=viewCount&pageToken=${token}&chart=mostPopular&regionCode=IN&key=${Api}`);
-        let data = await res.json();
-        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-        const scrolled = window.scrollY;
+            const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = window.scrollY;
+           
+
+             
     
         
         
-        if(Math.ceil(scrolled)=== scrollable){
-            let tokendata= data.nextPageToken;
+        if(Math.ceil(scrolled) === scrollable){
+           
+            let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=100&type=video&order=viewCount&pageToken=${token}&chart=mostPopular&regionCode=IN&key=${Api}`);
+            let data = await res.json();
+            let tokendata= await data.nextPageToken;
+            
             localStorage.setItem("token",JSON.stringify(tokendata));
             app(data.items);
         }
        })
 
+
+
     }
     catch(e){
         let  load = document.createElement("span");
         let head = document.getElementById("header");
+        console.log("error")
 
         load.className="loader";
 
 
       
     setTimeout(function(){ head.append(load) }, 0)
-    setTimeout(function(){ load.style.display ="none" }, 1000)
+    // setTimeout(function(){ load.style.display ="none" }, 1000)
    
    
 
@@ -136,22 +134,6 @@ const mostPopular = async ()=>{
 } 
 mostPopular();
 
-// const nextpage = async(token)=>{
-
-//     let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&type=video&order=viewCount&pageToken=${token}&chart=mostPopular&regionCode=IN&key=${Api}`);
-//     // let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=100&chart=mostPopular&regionCode=IN&key=${Api}`);
-//     let data = await res.json();
-//     // console.log(data);
-   
-//    window.addEventListener('scroll',()=>{
-//     const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-//     const scrolled = window.scrollY;
-
-//     if(Math.ceil(scrolled)=== scrollable){
-//         app(...data.items);
-//     }
-//    })
-// }
 
 const app = (data)=>{
     let container = document.getElementById("container");
@@ -274,9 +256,9 @@ let timer;
 
 function clickPress(event) {
     if (event.keyCode == 13) {
-        // do something
+       
         localStorage.setItem("query",JSON.stringify(query));
-    window.location.href="searchedVideo.html";
+         window.location.href="searchedVideo.html";
     }
 }
 const debounce = (fun,delay)=>{
@@ -291,9 +273,9 @@ const input = ()=>{
 
     debounce(async()=>{
     //   console.log(query.value)
-      let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query.value}&key=${Api}`);
+      let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${query.value}&key=${Api}`);
       let data = await res.json();
-      console.log(data);
+    //   console.log(data);
     
         searchBar(data.items);
  
@@ -308,6 +290,7 @@ const input = ()=>{
  
 const searchBar = (data)=>{
     let  container = document.getElementById("searchDiv");
+    container.innerHTML = null;
     let query = document.getElementById("query").value;
     let q = document.getElementById("query");
     let fa_search = document.getElementById("fa-search");
@@ -356,19 +339,7 @@ const searchBar = (data)=>{
             div.append(p);
             container.append(div);
             
-            
-            // if(container.children.length >=6){
-
-            //     console.log("hhi")
-            //     let a = container.children;
-            //     let c = Array.from(a)
-            //     let b = c.slice(Math.max(c.length - 5, 0));
-            //     div.style.display="none"
-            //     console.log(b)
-        
-        
-            // }
-    
+         
             
         }
         )
