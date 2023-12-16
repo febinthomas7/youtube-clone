@@ -6,7 +6,7 @@ let data = JSON.parse(video);
 
 
 
-let Api;
+let Api="AIzaSyDkYDo20vFknCOVnGvex7Q8YDvIvxxFN-E";
 const avatar= async(data)=>{
     // console.log(data)
 
