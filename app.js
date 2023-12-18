@@ -1,10 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
 import { getAuth,GoogleAuthProvider ,signInWithPopup ,signOut,onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
 import { getFirestore,serverTimestamp,collection ,addDoc,onSnapshot} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDg3psCzFL0CeAyE6WgS2l-td_1l9_Knu4",
   authDomain: "fir-90f38.firebaseapp.com",
@@ -37,9 +34,6 @@ let Out = document.getElementById("Out");
 
 
 
-// let Inp = document.getElementById("InP");
-// let pic = document.getElementById("pic");
-// let Outp = document.getElementById("Outp");
 
 const provider = new GoogleAuthProvider(app);
 

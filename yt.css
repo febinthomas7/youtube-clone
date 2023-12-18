@@ -362,9 +362,7 @@ color: var(--secondary-color);
 .drop{
   display: block;
 }
-/* .dropbtn:hover .dropdown-content{
-  display: block;
-} */
+
 .dropdown-content a {
   color: var(--secondary-color);
   padding: 8px 6px;
@@ -388,9 +386,7 @@ color: var(--secondary-color);
 }
 
 
-/* .active1{
 
-} */
 
   
 
@@ -1968,6 +1964,8 @@ cursor:pointer;
   
 }
  }
+
+ 
 @media (max-width:1300px) {
   #video {
     margin-left: 18px;
